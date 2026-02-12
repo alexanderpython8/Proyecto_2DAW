@@ -16,14 +16,22 @@
                     <div>
                         <a href="#">Productos</a>
                         <ul>
-                            <li><a href="./compras.php">Comprar</a></li>
-                            <li><a href="#">Alquilar</a></li>
-                            <li><a href="#">Catálogo</a></li>
+                            <li><a href="./comprar/compras.php">Comprar</a></li>
+                            <li><a href="./alquilar/alquiler.php">Alquilar</a></li>
+                            <li><a href="#">Nuevo</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="#">Catalogo</a>
+                        <ul>
+                            <li><a href="./comprar/compras.php">Comprar</a></li>
+                            <li><a href="./alquilar/alquiler.php">Alquilar</a></li>
+                            <li><a href="./catalogo/">Catálogo</a></li>
                             <li><a href="#">Nuevo</a></li>
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="./iniciosesion.php">Iniciar sesión</a>
+                    <a href="./inicio_sesion.php">Iniciar sesión</a>
                 </li>
                 <li>
                     <button><img src="./img/buscador.png" alt="Buscador"></button>

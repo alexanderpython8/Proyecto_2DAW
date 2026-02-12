@@ -10,9 +10,9 @@
     <header>
         <div>
             <ul>
-                <li><h1><a href="./index.php">BIG BANG</a></h1></li>
+                <li><h1><a href="../index.php">BIG BANG</a></h1></li>
                 <li>
-                    <a href="./index.php">Página principal</a>
+                    <a href="../index.php">Página principal</a>
                     <div>
                         <a href="#">Productos</a>
                         <ul>
@@ -23,7 +23,7 @@
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="./iniciosesion.php">Iniciar sesión</a>
+                    <a href="../inicio_sesion.php">Iniciar sesión</a>
                 </li>
                 <li>
                     <button><img src="./img/buscador.png" alt="Buscador"></button>
@@ -165,7 +165,7 @@
                     <li><a href="./compras.php">Comprar</a></li>
                     <li><a href="#">Alquiler</a></li>
                     <li><a href="#">Catálogo</a></li>
-                    <li><a href="./planeta.php">Novedades</a></li>
+                    <li><a href="#">Novedades</a></li>
                 </ul>
                 <ul>
                     <h2>Universo</h2>
