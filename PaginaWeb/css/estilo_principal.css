@@ -1,20 +1,27 @@
-@keyframes mi-animacion {
+/* --- Variables de Color --- */
+/* --- Mixins --- */
+@keyframes h1-movimiento {
   from {
-    opacity: 0;
+    transform: translateY(15px);
   }
   to {
-    opacity: 1;
+    transform: translateY(20px);
   }
 }
+/* --- Estilos Generales --- */
 * {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* --- Estilos Concretos --- */
 body {
   padding: 0;
   width: 100%;
   overflow-x: hidden;
+  /* --- Estilos del header --- */
+  /* --- Estilos del main --- */
+  /* --- Estilo del footer --- */
 }
 body header {
   background-image: url("../img/Planetafondo.jpg");
@@ -29,35 +36,43 @@ body header {
   align-items: center;
   position: relative;
   padding: 0;
+  /* --- Barra de navegacion fija --- */
 }
 body header > div:first-child {
   background-color: rgba(18, 32, 62, 0.8);
   position: fixed;
   top: 0;
   z-index: 2;
+  padding: 5px 0;
   width: 100%;
 }
 body header > div:first-child > ul {
   display: flex;
   list-style: none;
 }
-body header > div:first-child > ul li:first-child {
+body header > div:first-child > ul li:first-child h1 {
   padding-right: 1%;
+  margin-bottom: px;
+  text-align: center;
+  font-weight: 600;
+  font-family: monospace;
+  font-size: 20px;
+  font-style: italic;
+  padding-top: 5%;
+  text-shadow: 5px 5px 2px black;
 }
-body header > div:first-child > ul li:first-child img {
-  width: 110px;
-  height: 70px;
-  border-radius: 40px;
+body header > div:first-child > ul li:first-child h1 a {
+  color: #ffffff;
+  text-decoration: none;
 }
 body header > div:first-child > ul li:nth-child(2) {
   align-items: center;
   display: flex;
   position: relative;
-  padding-right: 32%;
+  width: 70%;
 }
 body header > div:first-child > ul li:nth-child(2) a {
   text-decoration: none;
-  text-align: center;
   display: initial;
   align-items: center;
   color: #E6E8EE;
@@ -70,6 +85,7 @@ body header > div:first-child > ul li:nth-child(2) a:hover {
 }
 body header > div:first-child > ul li:nth-child(2) div {
   position: relative;
+  /* --- Menu desplegable --- */
 }
 body header > div:first-child > ul li:nth-child(2) div a {
   display: initial;
@@ -91,12 +107,14 @@ body header > div:first-child > ul li:nth-child(2) div ul {
 }
 body header > div:first-child > ul li:nth-child(2) div ul li {
   padding: 10px 10px;
+  width: 110px;
   margin: 0;
   transition: all 0.5s ease;
 }
 body header > div:first-child > ul li:nth-child(2) div ul li a {
   color: #E6E8EE;
   font-size: 15px;
+  letter-spacing: 1.5px;
   display: inline-block;
   padding: 0;
   margin: 0;
@@ -108,6 +126,8 @@ body header > div:first-child > ul li:last-child {
   position: relative;
   display: flex;
   align-items: center;
+  width: 380px;
+  padding-right: 10px;
 }
 body header > div:first-child > ul li:last-child button {
   background-color: rgba(9, 13, 23, 0.6);
@@ -124,7 +144,7 @@ body header > div:first-child > ul li:last-child button img {
   border-radius: 20px;
 }
 body header > div:first-child > ul li:last-child input {
-  width: 100%;
+  width: 40%;
   height: 30px;
   border-radius: 5px;
   color: #0B0E14;
@@ -132,7 +152,7 @@ body header > div:first-child > ul li:last-child input {
   transition: all 0.5s linear;
 }
 body header > div:first-child > ul li:last-child input:hover {
-  padding-right: 140px;
+  width: 100%;
 }
 body header div:last-child {
   text-align: center;
@@ -143,14 +163,22 @@ body header div:last-child {
 body header div:last-child h1 {
   font-size: 5em;
   font-style: italic;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   text-shadow: 10px 10px 2px black;
+  display: inline-block;
+  animation: h1-movimiento 1.5s ease-in-out infinite alternate;
+}
+body header div:last-child a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 0 20%;
 }
 body header div:last-child a button {
   border-color: #ffffff;
   border-style: none;
   border-radius: 20px;
-  padding: 10px 50px;
+  padding: 10px 0;
   font-size: 1.2em;
   transition: all 0.4s linear;
 }
@@ -197,6 +225,7 @@ body main > article:first-of-type section a img {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  /* --- Zoom de la imagen --- */
   transition: all 0.7s ease-in-out;
 }
 body main > article:first-of-type section a img:hover {
@@ -362,7 +391,7 @@ body footer article:first-child section:last-of-type ul li a img {
   border-radius: 1px;
 }
 body footer article:last-child {
-  padding: 120px 15% 0 15%;
+  padding: 60px 15% 0 15%;
   color: #8A92A6;
 }
 body footer article:last-child p {

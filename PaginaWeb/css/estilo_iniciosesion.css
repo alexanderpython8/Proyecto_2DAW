@@ -1,0 +1,157 @@
+/* --- Variables de Color --- */
+/* --- Mixins --- */
+@keyframes h1-movimiento {
+  from {
+    transform: translateY(15px);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+/* --- Estilos Generales --- */
+* {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* --- Estilos Concretos --- */
+body {
+  /* --- Estilo del main --- */
+  /* --- Estilo del footer --- */
+}
+body main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../img/login.jpg");
+}
+body main h1 {
+  text-align: center;
+  font-weight: 600;
+  font-family: monospace;
+  font-size: 8vh;
+  font-style: italic;
+  padding-top: 5%;
+  text-shadow: 10px 10px 2px black;
+}
+body main h1 a {
+  color: #ffffff;
+  text-decoration: none;
+  /* --- Animacion del logo --- */
+  display: inline-block;
+  animation: h1-movimiento 1.5s ease-in-out infinite alternate;
+}
+body main div {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #E6E8EE;
+  box-shadow: 1px 1px 10px black;
+  width: 35%;
+  height: 460px;
+  margin-top: 2%;
+}
+body main div h2 {
+  text-align: center;
+  font-weight: 100;
+  padding-top: 40px;
+  padding-bottom: 22px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid black;
+  width: 52%;
+}
+body main div input {
+  color: #ffffff;
+  border: 1.5px solid black;
+  border-radius: 3px;
+  height: 36px;
+  width: 70%;
+  padding-left: 10px;
+  margin: 15px 0;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background-color: #181818;
+}
+body main div input::-moz-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+body main div input::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+body main div button {
+  font-weight: lighter;
+  width: 72%;
+  font-size: 20px;
+  height: 40px;
+  border: 1px solid black;
+  margin: 15px 0;
+  border-radius: 8px;
+  transition: all 0.4s ease;
+}
+body main div button:hover {
+  background-color: #121826;
+  color: #ffffff;
+}
+body main div a {
+  color: #5A8DEE;
+  text-decoration: none;
+  padding-top: 20px;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+body main div a:hover {
+  color: #181818;
+}
+body main div p {
+  padding-top: 20px;
+  letter-spacing: 1px;
+}
+body main div p a {
+  color: #5A8DEE;
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+body main div p a:hover {
+  color: #181818;
+}
+body footer {
+  padding: 50px 16% 20px 16%;
+  background-color: #181818;
+  border-color: #ffffff;
+}
+body footer article:first-child section {
+  border-top: 1px solid #9BA4B5;
+  border-bottom: 1px solid #9BA4B5;
+  padding: 50px 0;
+}
+body footer article:first-child section ul {
+  display: flex;
+  justify-content: space-around;
+}
+body footer article:first-child section ul li {
+  list-style: none;
+}
+body footer article:first-child section ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+}
+body footer article:first-child section ul li a img {
+  width: 16px;
+  height: 16px;
+  border-radius: 1px;
+}
+body footer article:last-child {
+  padding: 60px 15% 0 15%;
+  color: #8A92A6;
+}
+body footer article:last-child p {
+  padding: 10px;
+  text-align: center;
+  font-size: 10px;
+}/*# sourceMappingURL=estilo_iniciosesion.css.map */

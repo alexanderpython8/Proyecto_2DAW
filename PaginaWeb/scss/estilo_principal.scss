@@ -1,82 +1,87 @@
-$black: black;
-$color-header: #0B0E14;
-$color-menu: #E6E8EE;
-$color-hover: #5A8DEE;
-$texto-secundaria: #9BA4B5;
-$color-fondo-hover: #1A1F33;
-$fondo-main: #121826;
-$fondo-footer: #0A0D1A;
-$color-texto-footer: #8A92A6;
-$color-borde-footer: #ffffff;
-$texto-hover-activo: #3A7BD5;
-$texto-hover-footer: #0BC5EA;
-$texto-hover-footer-activo: #E879F9;
-$h2-footer: #8B949E;
-$footer-color: #181818;
-$button-header: #dadada;
-$buscador: rgba(9, 13, 23, 0.6);
-$buscador-hover: rgba(98, 96, 96, 0.6);
-$nav-flotante: rgba(18, 32, 62, 0.8);
 
-@mixin transition($property, $duration, $timing: linear) { //Creo la transición para el navegador
+/* --- Variables de Color --- */
+
+$black: black;
+$white: #ffffff;   
+$text-light: #E6E8EE;    
+$text-muted: #8A92A6;    
+$accent-color: #5A8DEE;   
+$bg-main: #121826; 
+$bg-darker: #0B0E14;   
+$bg-footer: #181818;   
+$btn-hover-bg: #3A7BD5;   
+$dropdown-hover-bg: #1A1F33; 
+$border-divider: #9BA4B5;  
+
+// Variables con transparencias (RGBA)
+$search-bg: rgba(9, 13, 23, 0.6);    
+$search-hover-bg: rgba(98, 96, 96, 0.6); 
+$nav-bg-translucent: rgba(18, 32, 62, 0.8); 
+
+/* --- Mixins --- */
+
+@mixin transition($property, $duration, $timing: linear) {
     -webkit-transition: $property $duration $timing;
     -moz-transition: $property $duration $timing;
     -o-transition: $property $duration $timing;
     transition: $property $duration $timing;
 }
 
-@mixin animation($name, $duration, $timing: linear) { //Creo la animacion para el hover
-    -webkit-animation: $name $duration $timing;
-    -moz-animation: $name $duration $timing;
-    -o-animation: $name $duration $timing;
-    animation: $name $duration $timing;
+@mixin animation($name, $duration, $timing: linear, $iteration: infinite, $direction: alternate) {
+    -webkit-animation: $name $duration $timing $iteration $direction;
+    -moz-animation: $name $duration $timing $iteration $direction;
+    -o-animation: $name $duration $timing $iteration $direction;
+    animation: $name $duration $timing $iteration $direction;
 }
 
-@keyframes mi-animacion { // Hace que la animacion salga suavemente
-    from {    
-        opacity: 0;
+@keyframes h1-movimiento {
+    from 
+    { 
+        transform: translateY(15px); 
     }
-    to {
-        opacity: 1;
+    to 
+    { 
+        transform: translateY(20px); 
     }
 }
 
-@mixin responsive($size) { // Hago un @mixin para reutilizar las medida segun la pantalla
-
-    // Pantalla grande
+@mixin responsive($size) {
     @if $size == medium {
-        @media (min-width: 801px) {
-        @content
+        @media (min-width: 801px) 
+        { 
+            @content 
         }
     }
-
-    // Pantalla pequeña
     @else if $size == small {
-        @media (max-width: 800px) {
+        @media (max-width: 800px) 
+        { 
             @content; 
         }
     }
 }
 
-* 
-{
+/* --- Estilos Generales --- */
+
+* {
     margin: 0;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-body 
-{
+
+/* --- Estilos Concretos --- */
+
+body {
     padding: 0;
     width: 100%;
     overflow-x: hidden;
-    header 
-    {
+
+    /* --- Estilos del header --- */
+    header {
         background-image: url("../img/Planetafondo.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         width: 100%;
-        min-height: 100vh; 
-    
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -84,72 +89,78 @@ body
         position: relative;
         padding: 0;
 
-        > div:first-child
-        {
-            background-color: rgba(18, 32, 62, 0.8);
-            position: fixed; // Al ser fixed, no afecta al centrado flex del resto
+        /* --- Barra de navegacion fija --- */
+        > div:first-child {
+            background-color: $nav-bg-translucent;
+            position: fixed;
             top: 0;
             z-index: 2;
+            padding: 5px 0;
             width: 100%;
-            > ul 
-            {
+
+            > ul {
                 display: flex;
                 list-style: none;
 
-                li:first-child
-                {
-                    padding-right: 1%;
-                    img 
+                li:first-child {
+                    h1 
                     {
-                        width: 110px;
-                        height: 70px;
-                        border-radius: 40px;
+                        padding-right: 1%;
+                        margin-bottom: px;
+                        text-align: center;
+                        font-weight: 600;
+                        font-family: monospace;
+                        font-size: 20px;
+                        font-style: italic;
+                        padding-top: 5%;
+                        text-shadow: 5px 5px 2px $black;
+                        a {
+                            color: $white;
+                            text-decoration: none;
+                        }
                     }
                 }
-                li:nth-child(2) 
-                {
+
+                li:nth-child(2) {
                     align-items: center;
                     display: flex;
                     position: relative;
-                    padding-right: 32%;
-                    a 
-                    {
+                    width: 70%;
+
+                    a {
                         text-decoration: none;
-                        text-align: center;
                         display: initial;
                         align-items: center;
-                        color: $color-menu;
+                        color: $text-light;
                         font-size: 15px;
                         padding-left: 60px;
                         text-align: center;
 
                         &:hover {
-                            color: $color-hover;
+                            color: $accent-color;
                         }
                     }
-                    div 
-                    {
-                        position: relative;
 
+                    div {
+                        position: relative;
                         a 
-                        {
-                            display: initial;
+                        { 
+                            display: initial; 
                         }
 
-                        &:hover 
-                        {
+                        &:hover {
                             ul 
                             {
                                 display: block;
                             }
                         }
 
-                        ul 
-                        {
+                        /* --- Menu desplegable --- */
+                        ul {
                             position: absolute;
                             top: 100%;
                             left: 50px;
-                            background-color: $nav-flotante;
+                            background-color: $nav-bg-translucent;
                             list-style: none;
                             margin: 0;
                             padding: 0;
@@ -157,15 +168,14 @@ body
                             flex-direction: column;
                             min-width: 110px;
 
-                            
-                            li 
-                            {
+                            li {
                                 padding: 10px 10px;
+                                width: 110px;
                                 margin: 0;
-                                a 
-                                {
-                                    color: $color-menu;
+                                a {
+                                    color: $text-light;
                                     font-size: 15px;
+                                    letter-spacing: 1.5px;
                                     display: inline-block;
                                     padding: 0;
                                     margin: 0;
@@ -174,133 +184,122 @@ body
                                 @include transition(all, 0.5s, ease);
 
                                 &:hover {
-                                    background-color: $color-fondo-hover;
+                                    background-color: $dropdown-hover-bg;
                                 }
-                                
                             }
-                            
                         }
                     }
                 }
-                li:last-child 
-                {
+
+                li:last-child {
                     position: relative;
                     display: flex;
                     align-items: center;
-                    
-                    button 
-                    {
-                        background-color: $buscador;
+                    width: 380px;
+                    padding-right: 10px;
+
+                    button {
+                        background-color: $search-bg;
                         border-radius: 100px;
                         border-style: none;
-                        
-                        &:hover
-                        {
-                            background-color: $buscador-hover;
+
+                        &:hover {
+                            background-color: $search-hover-bg;
                         }
-                        img
-                        {
+                        img {
                             border-radius: 100px;
                             width: 40px;
                             height: 40px;
                             border-radius: 20px;
                         }
                     }
-                    input 
-                    {
-                        width: 100%;
+
+                    input {
+                        width: 40%;
                         height: 30px;
                         border-radius: 5px;
-                        color: $color-header;
+                        color: $bg-darker;
                         font-weight: bold;
-
                         @include transition(all, 0.5s, linear);
 
-                        &:hover 
-                        {
-                            padding-right: 140px;
+                        &:hover {
+                            width: 100%;
                         }
                     }
                 }
             }
         }
-        div:last-child
-        {
+        div:last-child {
             text-align: center;
             color: white;
             z-index: 1;
-            font-family:monospace;
+            font-family: monospace;
 
-            h1 
-            {
+            h1 {
                 font-size: 5em;
                 font-style: italic;
-                margin-bottom: 40px;
+                margin-bottom: 50px;
                 text-shadow: 10px 10px 2px $black;
+                display: inline-block;
+                @include animation(h1-movimiento, 1.5s, ease-in-out);
             }
-            a 
-            {
-                button 
-                {
-                    border-color: $color-borde-footer;
+
+            a {
+                display: flex;
+                flex-direction: column;
+                text-decoration: none;
+                padding: 0 20%;
+
+                button {
+                    border-color: $white;
                     border-style: none;
                     border-radius: 20px;
-                    padding: 10px 50px;
+                    padding: 10px 0;
                     font-size: 1.2em;
-
                     @include transition(all, 0.4s, linear);
 
-                    &:hover 
-                    {
-                        background-color: $texto-hover-activo;
-                        color: $color-menu;
+                    &:hover {
+                        background-color: $btn-hover-bg;
+                        color: $text-light;
                     }
                 }
             }
         }
     }
-    main 
-    {
-        background: linear-gradient(to top, $fondo-main 25%, $color-header 100%);
 
-        > div 
-        {
+    /* --- Estilos del main --- */
+    main {
+        background: linear-gradient(to top, $bg-main 25%, $bg-darker 100%);
+
+        > div {
             text-align: center;
-            color: $color-borde-footer;
+            color: $white;
             padding-top: 100px;
-            h2 
-            {
+            h2 {
                 padding-bottom: 10px;
                 font-weight: 100;
             }
-            p 
-            {
-
-            }
         }
-        article 
-        {
+
+        article {
             text-align: center;
             padding-bottom: 40px;
         }
-        > article:first-of-type
-        {
+        > article:first-of-type {
             display: flex;
             justify-content: space-around;
             padding: 80px 12% 140px 12%;
 
-            section 
-            {
+            section {
                 width: 480px;
-                border-left: 0.5px solid $color-texto-footer;
-                a 
-                {
+                border-left: 0.5px solid $text-muted;
+                a {
                     display: block;
                     width: 95%;
                     height: 400px;
                     overflow: hidden;
-                    img 
-                    {
+
+                    img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
@@ -308,45 +307,40 @@ body
                         background-position: center;
                         background-repeat: no-repeat;
 
+                        /* --- Zoom de la imagen --- */
                         @include transition(all, 0.7s, ease-in-out);
 
-                        &:hover 
-                        {
-                            box-shadow: inset 50px 50px 5px 50px $color-hover;
+                        &:hover {
+                            box-shadow: inset 50px 50px 5px 50px $accent-color;
                             transform: scale(1.1);
                         }
                     }
                 }
-                p
-                {
+                p {
                     width: 80%;
                     padding-top: 18px;
-                    color: $color-borde-footer;
+                    color: $white;
                     font-weight: 50;
                     padding-left: 25px;
                     font-size: 16px;
                     text-align: left;
                 }
-                p:last-of-type
-                {
+                p:last-of-type {
                     padding-top: 10px;
                     font-size: 12px;
                 }
             }
         }
-        > article:last-child
-        {
+        > article:last-child {
             display: flex;
             justify-content: space-around;
             padding: 20px 5% 140px 4%;
             gap: 20px;
 
-            section:first-child 
-            {
+            section:first-child {
                 width: 860px;
                 height: 540px;
-                a
-                {
+                a {
                     display: inline-block;
                     background-image: url("../img/Comprar.jpg");
                     background-size: cover;
@@ -356,36 +350,31 @@ body
                     width: 90%;
                     padding: 23px;
                     text-decoration: none;
-
                     @include transition(all, 0.2s, ease);
 
-                    &:hover 
-                    {
+                    &:hover {
                         transform: scale(1.08);
                     }
 
-                    h2
-                    {
-                        font-family:Verdana, Geneva, Tahoma, sans-serif;
-                        text-decoration:solid;
-                        text-shadow: 3px 3px 1px $footer-color;
-                        color: $color-borde-footer;
+                    h2 {
+                        font-family: Verdana, Geneva, Tahoma, sans-serif;
+                        text-decoration: solid;
+                        text-shadow: 3px 3px 1px $bg-footer;
+                        color: $white;
                         font-size: 40px;
                         padding-bottom: 49%;
                     }
-                    p
-                    {
-                        font-family:Arial, Helvetica, sans-serif;
-                        text-align:left;
-                        color: $color-borde-footer;
+                    p {
+                        font-family: Arial, Helvetica, sans-serif;
+                        text-align: left;
+                        color: $white;
                         text-decoration: solid;
                         padding: 4px;
-                        background-color: $color-texto-footer;
+                        background-color: $text-muted;
                         font-size: 15px;
                         width: 10%;
                     }
-                    p:last-child 
-                    {
+                    p:last-child {
                         text-align: left;
                         background-color: transparent;
                         padding-top: 10px;
@@ -394,12 +383,11 @@ body
                     }
                 }
             }
-            section:last-child
-            {
+
+            section:last-child {
                 width: 860px;
                 height: 540px;
-                a
-                {
+                a {
                     display: inline-block;
                     background-image: url("../img/Alquiler.webp");
                     background-size: cover;
@@ -409,35 +397,30 @@ body
                     width: 90%;
                     padding: 23px;
                     text-decoration: none;
-
                     @include transition(all, 0.2s, ease);
 
-                    &:hover 
-                    {
+                    &:hover {
                         transform: scale(1.08);
                     }
-                    h2
-                    {
-                        font-family:Verdana, Geneva, Tahoma, sans-serif;
-                        text-decoration:solid;
-                        text-shadow: 3px 3px 1px $footer-color;
-                        color: $color-borde-footer;
+                    h2 {
+                        font-family: Verdana, Geneva, Tahoma, sans-serif;
+                        text-decoration: solid;
+                        text-shadow: 3px 3px 1px $bg-footer;
+                        color: $white;
                         font-size: 40px;
                         padding-bottom: 49%;
                     }
-                    p
-                    {
-                        font-family:Arial, Helvetica, sans-serif;
-                        text-align:left;
-                        color: $color-borde-footer;
+                    p {
+                        font-family: Arial, Helvetica, sans-serif;
+                        text-align: left;
+                        color: $white;
                         text-decoration: solid;
                         padding: 4px;
-                        background-color: $color-texto-footer;
+                        background-color: $text-muted;
                         font-size: 15px;
                         width: 6.2%;
                     }
-                    p:last-child 
-                    {
+                    p:last-child {
                         text-align: left;
                         background-color: transparent;
                         padding-top: 10px;
@@ -448,61 +431,51 @@ body
             }
         }
     }
-    footer 
-    {
-        padding: 50px 16% 20px 16%;
-        background-color: $footer-color;
-        border-color: $color-borde-footer;
 
-        article:first-child
-        {
-            section:first-of-type
-            {
+    /* --- Estilo del footer --- */
+    footer {
+        padding: 50px 16% 20px 16%;
+        background-color: $bg-footer;
+        border-color: $white;
+
+        article:first-child {
+            section:first-of-type {
                 display: flex;
                 justify-content: space-around;
                 text-align: center;
                 padding: 40px 0;
-                ul 
-                {
-                    h2 
-                    {
-                        color: $color-menu;
+                ul {
+                    h2 {
+                        color: $text-light;
                         font-size: 15px;
                     }
-                    li 
-                    {
+                    li {
                         padding: 15px 0;
                         list-style: none;
-                        a 
-                        {
+                        a {
                             font-size: 11px;
-                            color: $color-menu;
+                            color: $text-light;
                             text-decoration: solid;
                         }
                     }
                 }
             }
-            section:last-of-type
-            {
-                border-top: 1px solid $texto-secundaria;
-                border-bottom: 1px solid $texto-secundaria;
+
+            section:last-of-type {
+                border-top: 1px solid $border-divider;
+                border-bottom: 1px solid $border-divider;
                 padding: 50px 0;
 
-                ul 
-                {
+                ul {
                     display: flex;
                     justify-content: space-around;
-                    li 
-                    {
+                    li {
                         list-style: none;
-                        a 
-                        {
-                            color: $color-borde-footer;
+                        a {
+                            color: $white;
                             text-decoration: none;
                             font-size: 14px;
-
-                            img
-                            {
+                            img {
                                 width: 16px;
                                 height: 16px;
                                 border-radius: 1px;
@@ -512,12 +485,11 @@ body
                 }
             }
         }
-        article:last-child
-        {
-            padding: 120px 15% 0 15%;
-            color: $color-texto-footer;
-            p
-            {
+
+        article:last-child {
+            padding: 60px 15% 0 15%;
+            color: $text-muted;
+            p {
                 padding: 10px;
                 text-align: center;
                 font-size: 10px;
