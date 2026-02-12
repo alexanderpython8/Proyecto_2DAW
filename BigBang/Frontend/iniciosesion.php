@@ -8,7 +8,7 @@
 </head>
 <body>
     <main>
-        <h1><a href="./index.html">BIG BANG</a></h1>
+        <h1><a href="./index.php">BIG BANG</a></h1>
         <div>
             <h2>INICIAR SESIÓN</h2>
             <input type="email" placeholder="Email">
