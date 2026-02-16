@@ -10,28 +10,28 @@
     <header>
         <div>
             <ul>
-                <li><h1><a href="./index.php">BIG BANG</a></h1></li>
+                <li><h1><a href="{{ url('/') }}">BIG BANG</a></h1></li>
                 <li>
-                    <a href="./index.php"><strong>Página principal</strong></a>
+                    <a href="{{ url('/') }}"><strong>Página principal</strong></a>
                     <div>
                         <a href="#">Productos</a>
                         <ul>
-                            <li><a href="./comprar/compras.php">Comprar</a></li>
-                            <li><a href="./alquilar/alquiler.php">Alquilar</a></li>
+                            <li><a href="{{ url('/compras') }}">Comprar</a></li>
+                            <li><a href="#">Alquilar</a></li>
                             <li><a href="#">Nuevo</a></li>
                         </ul>
                     </div>
                     <div>
                         <a href="#">Catalogo</a>
                         <ul>
-                            <li><a href="./comprar/compras.php">Comprar</a></li>
-                            <li><a href="./alquilar/alquiler.php">Alquilar</a></li>
-                            <li><a href="./catalogo/">Catálogo</a></li>
+                            <li><a href="{{ url('/compras') }}">Comprar</a></li>
+                            <li><a href="#">Alquilar</a></li>
+                            <li><a href="#">Catálogo</a></li>
                             <li><a href="#">Nuevo</a></li>
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="./inicio_sesion.php">Iniciar sesión</a>
+                    <a href="{{ url('/login') }}">Iniciar sesión</a>
                 </li>
                 <li>
                     <button><img src="./img/buscador.png" alt="Buscador"></button>
@@ -82,7 +82,7 @@
         </article>
         <article>
             <section>
-                <a href="./compras.php">
+                <a href="">
                     <h2>COMPRAR</h2>
                     <p>Propietario</p>
                     <p>Hazte dueño de algo único</p>
@@ -102,10 +102,10 @@
             <section>
                 <ul>
                     <h2>Productos</h2>
-                    <li><a href="./compras.php">Comprar</a></li>
+                    <li><a href="{{ url('/compras') }}">Comprar</a></li>
                     <li><a href="#">Alquiler</a></li>
                     <li><a href="#">Catálogo</a></li>
-                    <li><a href="./planeta.php">Novedades</a></li>
+                    <li><a href="#">Novedades</a></li>
                 </ul>
                 <ul>
                     <h2>Universo</h2>

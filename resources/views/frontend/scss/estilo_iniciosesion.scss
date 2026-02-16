@@ -1,0 +1,226 @@
+
+/* --- Variables de Color --- */
+
+$black: black;
+$white: #ffffff;   
+$card-bg: #E6E8EE;   
+$link-hover: #5A8DEE;   
+$btn-hover-bg: #121826;   
+$fondo-main: #8d94a8;
+$footer-bg: #181818;   
+$footer-divider: #9BA4B5; 
+$footer-text-muted: #8A92A6;
+
+/* --- Mixins --- */
+
+@mixin transition($property, $duration, $timing: linear) {
+    -webkit-transition: $property $duration $timing;
+    -moz-transition: $property $duration $timing;
+    -o-transition: $property $duration $timing;
+    transition: $property $duration $timing;
+}
+
+@mixin animation($name, $duration, $timing: linear, $iteration: infinite, $direction: alternate) {
+    -webkit-animation: $name $duration $timing $iteration $direction;
+    -moz-animation: $name $duration $timing $iteration $direction;
+    -o-animation: $name $duration $timing $iteration $direction;
+    animation: $name $duration $timing $iteration $direction;
+}
+
+@keyframes h1-movimiento {
+    from 
+    {
+        transform: translateY(15px);
+    }
+    to 
+    {
+        transform: translateY(20px);
+    }
+}
+
+@mixin responsive($size) {
+    @if $size == medium 
+    {
+        @media (min-width: 801px) 
+        {
+        @content
+        }
+    }
+
+    // Pantalla pequeña
+    @else if $size == small 
+    {
+        @media (max-width: 800px) 
+        {
+            @content; 
+        }
+    }
+}
+
+/* --- Estilos Generales --- */
+
+* 
+{
+    margin: 0;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* --- Estilos Concretos --- */
+
+body {
+    /* --- Estilo del main --- */
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        min-height: 100vh;
+        background-image: url("../img/login.jpg");
+
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            font-family: monospace;
+            font-size: 8vh;
+            font-style: italic;
+            padding-top: 5%;
+            text-shadow: 10px 10px 2px $black;
+            a {
+                color: $white;
+                text-decoration: none;
+
+                /* --- Animacion del logo --- */
+                display: inline-block;
+                @include animation(h1-movimiento, 1.5s, ease-in-out);
+            }
+        }
+
+        div {
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: $card-bg;
+            box-shadow: 1px 1px 10px $black;
+            width: 35%;
+            height: 460px;
+            margin-top: 2%;
+
+            h2 {
+                text-align: center;
+                font-weight: 100;
+                padding-top: 40px;
+                padding-bottom: 22px;
+                margin-bottom: 25px;
+                border-bottom: 1px solid $black;
+                width: 52%;
+            }
+
+            input {
+                color: $white;
+                border: 1.5px solid $black;
+                border-radius: 3px;
+                height: 36px;
+                width: 70%;
+                padding-left: 10px;
+                margin: 15px 0;
+                font-size: 18px;
+                letter-spacing: 1px;
+                background-color: $footer-bg;
+
+                &::placeholder 
+                {
+                    color: $white;
+                    opacity: 1;
+                }
+            }
+
+            button {
+                font-weight: lighter;
+                width: 72%;
+                font-size: 20px;
+                height: 40px;
+                border: 1px solid $black;
+                margin: 15px 0;
+                border-radius: 8px;
+                @include transition(all, 0.4s, ease);
+
+                &:hover {
+                    background-color: $btn-hover-bg;
+                    color: $white;
+                }
+            }
+
+            a {
+                color: $link-hover;
+                text-decoration: none;
+                padding-top: 20px;
+                letter-spacing: 1px;
+                @include transition(all, 0.2s, ease);
+
+                &:hover {
+                    color: $footer-bg;
+                }
+            }
+
+            p {
+                padding-top: 20px;
+                letter-spacing: 1px;
+                a {
+                    color: $link-hover;
+                    text-decoration: underline;
+                    @include transition(all, 0.2s, ease);
+
+                    &:hover {
+                        color: $footer-bg;
+                    }
+                }
+            }
+        }
+    }
+
+    /* --- Estilo del footer --- */
+
+    footer {
+        padding: 50px 16% 20px 16%;
+        background-color: $footer-bg;
+        border-color: $white;
+
+        article:first-child {
+            section {
+                border-top: 1px solid $footer-divider;
+                border-bottom: 1px solid $footer-divider;
+                padding: 50px 0;
+
+                ul {
+                    display: flex;
+                    justify-content: space-around;
+                    li {
+                        list-style: none;
+                        a {
+                            color: $white;
+                            text-decoration: none;
+                            font-size: 14px;
+
+                            img {
+                                width: 16px;
+                                height: 16px;
+                                border-radius: 1px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        article:last-child {
+            padding: 60px 15% 0 15%;
+            color: $footer-text-muted;
+            p {
+                padding: 10px;
+                text-align: center;
+                font-size: 10px;
+            }
+        }
+    }
+}
