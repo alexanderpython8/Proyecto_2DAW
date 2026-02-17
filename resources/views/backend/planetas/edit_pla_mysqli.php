@@ -1,0 +1,162 @@
+<?php
+    // session_start();
+
+    // // Verificacion si es Administrador par poder acceder a esta pagina
+    // if(!isset($_SESSION["nombre"]) || $_SESSION["rol"] != 1) {
+    //     header("location:../panel.php");
+    //     die();
+    // }
+    
+    // include("../db/db.inc");//mysqli
+
+    // // Extraigo todos los sistemas estelares disponibles
+    // $sql_sistemas = "SELECT id_sistema, nombre FROM sistemas_estelares ORDER BY nombre";
+    // $res_sistemas = mysqli_query($conn, $sql_sistemas);
+    // $sistemas = [];
+
+    // if ($res_sistemas) 
+    // {
+    //     while ($row = mysqli_fetch_assoc($res_sistemas)) 
+    //     {
+    //         // Guardo los valores en un array
+    //         $sistemas[] = $row;
+    //     }
+    //     mysqli_free_result($res_sistemas);
+    // }
+
+    // // cuando pulse actualizar
+    // if (isset($_POST["accion"]) && $_POST["accion"] == "editar") 
+    // {
+        
+    //     if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) 
+    //     {
+    //         // Extraigo los datos necesarios para la edición de los datos de la tabla
+    //         $nombre = htmlspecialchars(($_POST["nombre"]));
+    //         $descripcion = htmlspecialchars(($_POST["descripcion"]));
+    //         $masa = htmlspecialchars(($_POST["masa"]));
+    //         $distancia = intval(($_POST["distancia"]));
+    //         $precio = intval(($_POST["precio"]));
+    //         $id_sistema = intval(($_POST["id_sistema"]));
+    //         $id = intval($_POST["id"]);
+            
+    //         // Verifico que no haya ningun planeta con el mismo nombre
+    //         $sql_nombre = "SELECT id FROM planetas WHERE nombre='$nombre' AND id != $id";
+    //         $res = mysqli_query($conn, $sql_nombre);
+            
+    //         if (mysqli_num_rows($res) > 0)
+    //         {
+    //             header("location:gestion_planetas.php?pla=1");
+    //             die();
+    //         }
+
+    //         // Actualizo el planeta
+    //         $sql = "UPDATE planetas SET nombre = '$nombre', descripcion = '$descripcion', masa = '$masa', distancia = '$distancia', 
+    //                 precio = '$precio', id_sistema = '$id_sistema' WHERE id = $id";
+            
+    //         if (mysqli_query($conn, $sql)) 
+    //         {
+    //             header("location:gestion_planetas.php?pla=0"); //Si todo ok
+    //         }
+    //         else 
+    //         {
+    //             header("location:gestion_planetas.php?pla=2"); //Si no actualizo
+    //         }
+    //         die();
+    //     }
+    // }
+    // if(!isset($_GET["edit"])) {
+    //     header("location:gestion_planetas.php");
+    //     die();
+    // }
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/estilo_ins.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Boton para volver a la gestión -->
+    <div class="card-header bg-primary d-flex align-items-center">
+        <a href="./gestion_planetas.php" class="btn-back">
+            ⬅ Volver
+        </a>
+    </div>
+    <main class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h2 class="text-light">Registro de Planeta con MySQL</h2>
+            </div>
+            <div class="card-body">
+
+            <?php
+                $id = intval($_GET["edit"]);
+                $sql = "SELECT * FROM planetas WHERE id = $id"; // consulta para obtener los datos del planeta
+                $res = mysqli_query($conn, $sql); // ejecutar consulta
+                if (mysqli_num_rows($res) > 0) { // comprobar si hay resultado
+                    $pla = mysqli_fetch_assoc($res); // crear un array asociativo con los datos del planeta
+                }
+                else {
+                    header("location:gestion_planetas.php");
+                    die();
+                }
+            ?>
+
+                <form method="POST">
+                    <input type="hidden" name="id" value="<?=$id;?>">
+                    <input type="hidden" name="accion" value="editar">
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="<?= $pla["nombre"] ?>" required>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="descripcion" class="form-label">Descripcion:</label>
+                            <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?= $pla["descripcion"] ?>" required>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="masa" class="form-label">Masa:</label>
+                            <input type="text" class="form-control" id="masa" name="masa" value="<?= $pla["masa"] ?>" required>
+                        </div>
+
+                        <div class="col-md-6 mt-3">
+                            <label for="distancia" class="form-label">Distancia:</label>
+                            <input type="number" class="form-control" id="distancia" name="distancia" step="0.01" value="<?= $pla["distancia"] ?>" required>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="precio" class="form-label">Precio:</label>
+                            <input type="number" class="form-control" id="precio" name="precio" step="1" value="<?= $pla["precio"] ?>" required>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <label for="id_sistema" class="form-label">Sistema (id - nombre)</label>
+                            <select name="id_sistema" id="id_sistema" class="form-select" required>
+                                <option value="" selected disabled>Selecciona un sistema</option>
+                                <!-- Verifico si el array no esta vacio -->
+                                <?php if (!empty($sistemas)): ?>
+                                    <!-- Paso por todo el array de sistemas -->
+                                    <?php foreach ($sistemas as $s): ?>
+                                        <option value="<?php echo intval($s['id_sistema']); ?>">
+                                            <!-- Muestro el id y nombre del sistema a elegir -->
+                                            <?php echo htmlspecialchars($s['id_sistema'] . ' - ' . $s['nombre'], ENT_QUOTES); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                <!-- Si esta vacio muestro el mensaje -->
+                                <?php else: ?>
+                                    <option value="" disabled>No hay sistemas disponibles</option>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+                        <!-- Confirmo la actualización -->
+                        <button type="submit" class="btn btn-success mt-5">Actualizar Planetas</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

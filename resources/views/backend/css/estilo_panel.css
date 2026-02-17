@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+}
+
+body {
+    background-image: url("../img/8d75e594e6ab65f8073e7112e7446445.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  
+}
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4a5d72ff;
+    box-shadow: 0 0 15px rgba(163, 202, 245, 0.6);
+}
+
+.user-text h5 {
+    color: #E8F4FF;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.user-text small {
+    color: #9AA4BF;
+    font-size: 30px;
+}
+
+main {
+    min-height: 100vh;
+    padding-top: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.dashboard {
+    width: 90%;
+    max-width: 1500px;
+}
+
+.dashboard h1 {
+    margin-bottom: 60px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 60px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+}
+
+.card {
+    height: 170px;
+    border-radius: 18px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+    background: linear-gradient(135deg, #4DA3FF, #7F5AF0);
+}
+
+
+.card .icon {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ced3d4ff;
+}
+
+/* Colores de los paneles o - o*/
+.cli { background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); }
+.pla { background: linear-gradient(145deg, #0B3C5D, #1F7A8C, #2A6FFF); }
+.sis { background: linear-gradient(180deg, #000814, #001D3D, #003566); }
+.ped { background: linear-gradient(180deg, #000814, #001D3D, #003566); }
+.usr { background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); }
+.con { background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); }
+.exit { background: linear-gradient(180deg, #1c1d48, #502a2a, #361c1c); }

@@ -1,0 +1,81 @@
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: linear-gradient(135deg, #0f1b2a, #162233);
+color: #e6f3ff;
+min-height: 100vh;
+padding: 2rem;
+}
+
+
+.card {
+background: rgba(150, 16, 16, 0.05);
+border: 1px solid rgba(255,255,255,0.1);
+border-radius: 12px;
+padding: 1.5rem;
+max-width: 800px;
+margin: 0 auto;
+
+}
+
+
+.card-header {
+font-size: 1.5rem;
+margin-bottom: 1rem;
+color: #c442a8;
+background-color: transparent !important;
+}
+
+
+.form-label {
+display: block;
+margin-bottom: 0.3rem;
+color: #b9c7d9;
+font-size: 0.9rem;
+}
+
+
+.form-control, .form-select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.02);
+    color: #e6f3ff;
+}
+
+
+.form-select option {
+    color: #06121a;
+    background: #fefefe;
+}
+
+
+.form-control:focus, .form-select:focus {
+    border-color: #6ee7f5;
+    outline: none;
+}
+
+
+button.btn-success {
+    background: linear-gradient(90deg, #46c4ca, #aa8958);
+    color: #06121a;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+button.btn-success:hover {
+    filter: brightness(1.05);
+}
+
+.btn-back {
+    padding: 8px 16px;
+    color: #E8F4FF;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+}
