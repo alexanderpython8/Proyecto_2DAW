@@ -3,38 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/estilo_principal.css">
     <title>Página principal</title>
+    <link rel="stylesheet" href="{{ asset('css/estilo_principal.css') }}">
 </head>
 <body>
     <header>
         <div>
             <ul>
-                <li><h1><a href="{{ url('/') }}">BIG BANG</a></h1></li>
+                <li><h1><a href="{{ route('welcome') }}">BIG BANG</a></h1></li>
                 <li>
-                    <a href="{{ url('/') }}"><strong>Página principal</strong></a>
-                    <div>
-                        <a href="#">Productos</a>
-                        <ul>
-                            <li><a href="{{ url('/compras') }}">Comprar</a></li>
-                            <li><a href="#">Alquilar</a></li>
-                            <li><a href="#">Nuevo</a></li>
-                        </ul>
-                    </div>
+                    <a href="{{ route('welcome') }}"><strong>Página principal</strong></a>
                     <div>
                         <a href="#">Catalogo</a>
                         <ul>
-                            <li><a href="{{ url('/compras') }}">Comprar</a></li>
+                            <li><a href="{{ route('compras') }}">Comprar</a></li>
                             <li><a href="#">Alquilar</a></li>
                             <li><a href="#">Catálogo</a></li>
                             <li><a href="#">Nuevo</a></li>
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="{{ url('/login') }}">Iniciar sesión</a>
+                    <a href="{{ route('login') }}">Iniciar sesión</a>
                 </li>
                 <li>
-                    <button><img src="./img/buscador.png" alt="Buscador"></button>
+                    <button><img src="{{ asset('img/buscador.png') }}" alt="Buscador"></button>
                     <input type="text" id="busqueda" placeholder="Buscar">
                 </li>
             </ul>
@@ -54,7 +46,7 @@
         <article>
             <section>
                 <a href="#">
-                    <img src="./img/planetas.jpeg" alt="">
+                    <img src="{{ asset('img/planetas.jpeg') }}" alt="">
                 </a>
                 <p>PLANETA</p>
                 <p>¿Cansado del tráfico, el ruido y la gravedad de siempre? En Big Bang, 
@@ -63,7 +55,7 @@
             </section>
             <section>
                 <a href="#">
-                    <img src="./img/sistemasestelares.jpg" alt="">
+                    <img src="{{ asset('img/sistemasestelares.jpg') }}" alt="">
                 </a>
                 <p>SISTEMAS ESTELARES</p>
                 <p>¿Por qué conformarte con un jardín cuando puedes ser el dueño de la gravedad, 
@@ -72,7 +64,7 @@
             </section>
             <section>
                 <a href="#">
-                    <img src="./img/agujeronegro.webp" alt="">
+                    <img src="{{ asset('img/agujeronegro.webp') }}" alt="">
                 </a>
                 <p>AGUJERO NEGRO</p>
                 <p>Para los clientes más audaces que buscan el máximo poder en el universo, 
@@ -82,7 +74,7 @@
         </article>
         <article>
             <section>
-                <a href="">
+                <a href="{{ route('compras') }}">
                     <h2>COMPRAR</h2>
                     <p>Propietario</p>
                     <p>Hazte dueño de algo único</p>
@@ -102,7 +94,7 @@
             <section>
                 <ul>
                     <h2>Productos</h2>
-                    <li><a href="{{ url('/compras') }}">Comprar</a></li>
+                    <li><a href="{{ route('compras') }}">Comprar</a></li>
                     <li><a href="#">Alquiler</a></li>
                     <li><a href="#">Catálogo</a></li>
                     <li><a href="#">Novedades</a></li>
@@ -124,25 +116,25 @@
                 <ul>
                     <li>
                         <a href="#">
-                            <img src="./img/facebook.avif" alt="">
+                            <img src="{{ asset('img/facebook.avif') }}" alt="">
                             Facebook
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="./img/insta.avif" alt="">
+                            <img src="{{ asset('img/insta.avif') }}" alt="">
                             Instagram
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="./img/x.avif" alt="">
+                            <img src="{{ asset('img/x.avif') }}" alt="">
                             X
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="./img/youtube.avif" alt="">
+                            <img src="{{ asset('img/youtube.avif') }}" alt="">
                             YouTube
                         </a>
                     </li>

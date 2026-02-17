@@ -50,6 +50,7 @@
     //     }
     //     die();
     // }
+
 ?>
 
 <!DOCTYPE html>
@@ -81,42 +82,33 @@
                             <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="descripcion" class="form-label">Descripcion</label>
-                            <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                            <label for="tipo" class="form-label">Tipo</label>
+                            <select name="tipo" id="tipo" class="form-select">
+                                <!-- Muestro las opciones de tipo -->
+                                <option value="" selected disabled>Selecciona una opción</option>
+                                <option value=>Planeta</option>
+                                <option value=1>Sistemas estelares</option>
+                                <option value=2>Agujeros negros</option>
+                            </select>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="masa" class="form-label">Masa</label>
-                            <input type="text" class="form-control" id="masa" name="masa" required>
+                            <label for="historia" class="form-label">Historia</label>
+                            <input type="text" class="form-control" id="historia" name="historia" required>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="distancia" class="form-label">Distancia</label>
-                            <input type="number" class="form-control" id="distancia" name="distancia" step="1" required>
+                            <label for="caracteristicas" class="form-label">Caracteristicas</label>
+                            <input type="text" class="form-control" id="caracteristicas" name="caracteristicas" required>
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="precio" class="form-label">Precio</label>
                             <input type="number" class="form-control" id="precio" name="precio" step="1" required>
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="id_sistema" class="form-label">Sistema (id - nombre)</label>
-                            <select name="id_sistema" id="id_sistema" class="form-select" required>
-                                <option value="" selected disabled>Selecciona un sistema</option>
-                                <!-- Verifico si el array no esta vacio -->
-                                <?php if (!empty($sistemas)): ?>
-                                    <!-- Paso por todo el array de sistemas -->
-                                    <?php foreach ($sistemas as $s): ?>
-                                        <option value="<?php echo intval($s['id_sistema']); ?>">
-                                            <!-- Muestro el id y nombre del sistema a elegir -->
-                                            <?php echo htmlspecialchars($s['id_sistema'] . ' - ' . $s['nombre'], ENT_QUOTES); ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                <!-- Si esta vacio muestro el mensaje -->
-                                <?php else: ?>
-                                    <option value="" disabled>No hay sistemas disponibles</option>
-                                <?php endif; ?>
-                            </select>
+                            <label for="img" class="form-label">Img</label>
+                            <input type="text" class="form-control" id="img" name="img" required>
                         </div>
                         <!-- Confirmo la inserccion del planeta -->
-                        <button type="submit" class="btn btn-success mt-5">Guardar planeta</button>
+                        <button type="submit" class="btn btn-success mt-5">Guardar Astro</button>
                     </div>
                 </form>
             </div>

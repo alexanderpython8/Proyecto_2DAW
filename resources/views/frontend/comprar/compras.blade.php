@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/estilo_compras.css">
+    <link rel="stylesheet" href="{{ asset('css/estilo_compras.css') }}">
     <title>Compras</title>
 </head>
 <body>
     <header>
         <div>
             <ul>
-                <li><h1><a href="../index.php">BIG BANG</a></h1></li>
+                <li><h1><a href="{{ route('welcome') }}">BIG BANG</a></h1></li>
                 <li>
-                    <a href="../index.php">Página principal</a>
+                    <a href="{{ route('welcome') }}"><strong>Página principal</strong></a>
                     <div>
-                        <a href="#">Productos</a>
+                        <a href="#">Catalogo</a>
                         <ul>
-                            <li><a href="./compras.php"><strong>Comprar</strong></a></li>
+                            <li><a href="{{ route('compras') }}">Comprar</a></li>
                             <li><a href="#">Alquilar</a></li>
                             <li><a href="#">Catálogo</a></li>
                             <li><a href="#">Nuevo</a></li>
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="../inicio_sesion.php">Iniciar sesión</a>
+                    <a href="{{ route('login') }}">Iniciar sesión</a>
                 </li>
                 <li>
-                    <button><img src="./img/buscador.png" alt="Buscador"></button>
+                    <button><img src="{{ asset('img/buscador.png') }}" alt="Buscador"></button>
                     <input type="text" id="busqueda" placeholder="Buscar">
                 </li>
             </ul>
@@ -38,7 +38,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/jupiter.jpg" alt="">
+                            <img src="{{ asset('img/jupiter.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Júpiter</h3>
@@ -49,7 +49,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/Gemini_Generated_Image_bwq4xobwq4xobwq4.png" alt="">
+                            <img src="{{ asset('img/Gemini_Generated_Image_bwq4xobwq4xobwq4.png') }}" alt="">
                         </div>
                         <div>
                             <h3>Alfa Centauri A</h3>
@@ -60,7 +60,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/urano.jpg" alt="">
+                            <img src="{{ asset('img/urano.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Urano</h3>
@@ -71,7 +71,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/planetas.jpeg" alt="">
+                            <img src="{{ asset('img/planetas.jpeg') }}" alt="">
                         </div>
                         <div>
                             <h3>Plutón</h3>
@@ -82,7 +82,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/mercurio.jpg" alt="">
+                            <img src="{{ asset('img/mercurio.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Mercurio</h3>
@@ -93,7 +93,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/agujeronegro.webp" alt="">
+                            <img src="{{ asset('img/agujeronegro.webp') }}" alt="">
                         </div>
                         <div>
                             <h3>Cygnus X-1</h3>
@@ -104,7 +104,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/neptuno.jpg" alt="">
+                            <img src="{{ asset('img/neptuno.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Neptuno</h3>
@@ -115,7 +115,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/saturno.jpg" alt="">
+                            <img src="{{ asset('img/saturno.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Saturno</h3>
@@ -126,7 +126,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="./img/proximacentaurib.jpg" alt="">
+                            <img src="{{ asset('img/proximacentaurib.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Próxima Centauri B</h3>
@@ -153,7 +153,7 @@
                 </ul>
             </section>
             <section>
-                <img src="./img/jupiter_principal.webp" alt="">
+                <img src="{{ asset('img/jupiter_principal.webp') }}" alt="">
             </section>
         </article>
     </main>
@@ -162,7 +162,7 @@
             <section>
                 <ul>
                     <h2>Productos</h2>
-                    <li><a href="./compras.php">Comprar</a></li>
+                    <li><a href="{{ route('compras') }}">Comprar</a></li>
                     <li><a href="#">Alquiler</a></li>
                     <li><a href="#">Catálogo</a></li>
                     <li><a href="#">Novedades</a></li>
@@ -184,25 +184,25 @@
                 <ul>
                     <li>
                         <a href="#">
-                            <img src="./img/facebook.avif" alt="">
+                            <img src="{{ asset('img/facebook.avif') }}" alt="">
                             Facebook
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="./img/insta.avif" alt="">
+                            <img src="{{ asset('img/insta.avif') }}" alt="">
                             Instagram
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="./img/x.avif" alt="">
+                            <img src="{{ asset('img/x.avif') }}" alt="">
                             X
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="./img/youtube.avif" alt="">
+                            <img src="{{ asset('img/youtube.avif') }}" alt="">
                             YouTube
                         </a>
                     </li>
