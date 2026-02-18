@@ -17,7 +17,6 @@
 /* --- Estilos Concretos --- */
 body {
   /* --- Estilo del main --- */
-  /* --- Estilo del footer --- */
 }
 body main {
   display: flex;
@@ -43,7 +42,7 @@ body main h1 a {
   display: inline-block;
   animation: h1-movimiento 1.5s ease-in-out infinite alternate;
 }
-body main div {
+body main form {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -54,7 +53,7 @@ body main div {
   height: 460px;
   margin-top: 2%;
 }
-body main div h2 {
+body main form h2 {
   text-align: center;
   font-weight: 100;
   padding-top: 40px;
@@ -63,7 +62,7 @@ body main div h2 {
   border-bottom: 1px solid black;
   width: 52%;
 }
-body main div input {
+body main form input {
   color: #ffffff;
   border: 1.5px solid black;
   border-radius: 3px;
@@ -75,15 +74,15 @@ body main div input {
   letter-spacing: 1px;
   background-color: #181818;
 }
-body main div input::-moz-placeholder {
+body main form input::-moz-placeholder {
   color: #ffffff;
   opacity: 1;
 }
-body main div input::placeholder {
+body main form input::placeholder {
   color: #ffffff;
   opacity: 1;
 }
-body main div button {
+body main form button {
   font-weight: lighter;
   width: 72%;
   font-size: 20px;
@@ -93,31 +92,34 @@ body main div button {
   border-radius: 8px;
   transition: all 0.4s ease;
 }
-body main div button:hover {
+body main form button:hover {
   background-color: #121826;
   color: #ffffff;
 }
-body main div a {
+body main form a {
   color: #5A8DEE;
   text-decoration: none;
   padding-top: 20px;
   letter-spacing: 1px;
   transition: all 0.2s ease;
 }
-body main div a:hover {
+body main form a:hover {
   color: #181818;
 }
-body main div p {
+body main form p {
   padding-top: 20px;
   letter-spacing: 1px;
 }
-body main div p a {
+body main form p a {
   color: #5A8DEE;
   text-decoration: underline;
   transition: all 0.2s ease;
 }
-body main div p a:hover {
+body main form p a:hover {
   color: #181818;
+}
+body {
+  /* --- Estilo del footer --- */
 }
 body footer {
   padding: 50px 16% 20px 16%;

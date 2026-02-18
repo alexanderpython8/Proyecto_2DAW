@@ -21,17 +21,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/estilo_panel.css">
+    <link rel="stylesheet" href="{{ asset('css/estilo_panel.css') }}">
     <title>Panel de Control</title>
 </head>
 <body>
     <header class="top-header">
         <div class="user-info">
-            <img src="./img/<?= $img ?>" alt="avatar" class="avatar">
+            <img src="{{ asset('img/Comprar.jpg') }}" alt="avatar" class="avatar">
             
             <div class="user-text">
-                <h5><?= htmlspecialchars($nombre) ?></h5>
-                <small><?= htmlspecialchars($rol) == 1 ? "Administrador" : "Usuario" ?></small>
+                <h5>Usuario</h5>
+                <small>Administrador</small>
             </div>
         </div>
     </header>
@@ -41,55 +41,39 @@
             <h1>Panel de Control</h1>
 
             <div class="cards">
-
-                <!-- Solo puede acceder los administradores -->
-                <?php if ($rol == 1): ?>
                 <div class="card cli">
-                    <a href="clientes/gestion_clientes.php">
+                    <a href="{{ route('gestion_ast') }}">
                         <div class="icon">👨‍💼</div>
-                        <h2>Clientes</h2>
+                        <h2>Astros</h2>
                     </a>
                 </div>
-                <?php endif; ?>
 
                 <div class="card pla">
-                    <a href="planetas/gestion_planetas.php">
+                    <a href="{{ route('gestion_com') }}">
                         <div class="icon">🌍</div>
-                        <h2>Planetas</h2>
+                        <h2>Comprar</h2>
                     </a>
                 </div>
 
                 <div class="card sis">
-                    <a href="sistemas_estelares/gestion_sistemas_estelares.php">
+                    <a href="{{ route('gestion_alq') }}">
                         <div class="icon">🌠</div>
-                        <h2>Sistemas Estelares</h2>
+                        <h2>Alquiler</h2>
                     </a>
                 </div>
 
                 <div class="card ped">
-                    <a href="pedidos/gestion_pedidos.php">
+                    <a href="{{ route('gestion_pag') }}">
                         <div class="icon">📡</div>
-                        <h2>Pedidos</h2>
+                        <h2>Pago</h2>
                     </a>
                 </div>
-
-                <!-- Solo puede acceder los administradores -->
-                <?php if ($rol == 1): ?>
                 <div class="card usr">
-                    <a href="usuarios/gestion_usuarios.php">
+                    <a href="{{ route('gestion_usr') }}">
                         <div class="icon">🔒</div>
                         <h2>Usuarios</h2>
                     </a>
                 </div>
-                <?php endif; ?>
-
-                <div class="card exit">
-                    <a href="./logout.php">
-                        <div class="icon">🕳️</div>
-                        <h2>Cerrar sesión</h2>
-                    </a>
-                </div>
-
             </div>
         </div>
     </main>

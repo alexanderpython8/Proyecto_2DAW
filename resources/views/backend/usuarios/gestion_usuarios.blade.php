@@ -8,7 +8,8 @@
     // }
 
     // // Incluimos la conexión a la BD
-    // include("../db/db.inc"); 
+    // include("../db/db.inc");
+
     // //Extraigo la cantidad de paginas 
     // $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
@@ -17,18 +18,18 @@
     // $offset = ($page - 1) * $limit;
 
     // // traer los clientes
-    // $result = $conn->query("SELECT * FROM clientes ORDER BY id DESC LIMIT $limit OFFSET $offset");
-    // $clientes = [];
+    // $result = $conn->query("SELECT * FROM usuarios ORDER BY id DESC LIMIT $limit OFFSET $offset");
+    // $usuarios = [];
     // while ($row = $result->fetch_assoc()) {
-    //     $clientes[] = $row;
+    //     $usuarios[] = $row;
     // }
 
     // // contar total de clientes
-    // $total = $conn->query("SELECT COUNT(*) as total FROM clientes")->fetch_assoc()['total'];
+    // $total = $conn->query("SELECT COUNT(*) as total FROM usuarios")->fetch_assoc()['total'];
     // $total_paginas = ceil($total / $limit);
 
-    // $nombre = $_SESSION["nombre"]; 
-    // $rol = $_SESSION["rol"]; 
+    // $nombre = $_SESSION["nombre"];
+    // $rol = $_SESSION["rol"];
     // $img = $_SESSION["img"] ?? '';
 
     // // Si el usuario no tiene img se pone una por defecto
@@ -36,16 +37,16 @@
     //     $img = 'admin.jpg';
     // }
 
-    // // eliminar cliente
     // if (isset($_GET["eliminar"])) {
+    //     // Verefico
     //     if ($rol != 1) {
-    //         header("location:gestion_clientes.php");
+    //         header("location:gestion_usuarios.php");
     //         exit;
     //     }
 
-    //     $id_cliente = intval($_GET["eliminar"]);
-    //     $conn->query("DELETE FROM clientes WHERE id = $id_cliente");
-    //     header("location:gestion_clientes.php");
+    //     $id_usuario = intval($_GET["eliminar"]); // código en mi bd del usuario a eliminar
+    //     $conn->query("DELETE FROM usuarios WHERE id = $id_usuario");
+    //     header("location:gestion_usuarios.php");
     //     exit;
     // }
 ?>
@@ -54,13 +55,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de Clientes</title>
+    <title>Gestión de Usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/estilo_gestion.css">
+    <link rel="stylesheet" href="{{ asset('css/estilo_gestion.css') }}">
     <style>
         body {
-            background-image: url("../img/4k-earth-overcast-planet-5go4pukq2go4shxz.jpg");
-        }
+            background-image: url("../img/asteroids-of-solar-system-hd-lf9eaj5sxtwrjw7i.jpg");
+        } 
     </style>
 </head>
 <body class="bg-light">
@@ -68,15 +69,15 @@
             style="width: 260px; min-height: 100vh; position: fixed; left:0; top:0;">
 
         <div class="text-center mb-4">
-            <img src="../img/<?= $img ?>"
+            <img src="{{ asset('img/Comprar.jpg') }}"
                     class="rounded-circle mb-2" width="80" height="80" alt="avatar">
 
-            <h5 class="mb-0"><?= htmlspecialchars($nombre) ?></h5>
-            <small class="text-light"><?= htmlspecialchars($rol) == 1 ? "Administrador" : "Usuario" ?></small>
+            <h5>Usuario</h5>
+            <small>Administrador</small>
 
             <!-- Botón para cerrar sesión y volver al index -->
             <div class="mt-2">
-                <a href="../logout.php" class="btn btn-danger">Cerrar sesión</a>
+                <a href="{{ route('welcome') }}" class="btn btn-danger">Cerrar sesión</a>
             </div>
         </div>
 
@@ -84,60 +85,65 @@
 
         <div class="list-group">
 
-            <a href="gestion_clientes.php"
-                class="list-group-item list-group-item-action"
-                <?= basename($_SERVER['PHP_SELF']) == 'gestion_clientes.php' ? 'active' : '' ?>">
-                👥 Clientes
-            </a>
-
-            <a href="../planetas/gestion_planetas.php" 
+            <a href="{{ route('gestion_ast') }}"
                 class="list-group-item list-group-item-action">
-                🌍 Planetas
+                👥 Astros
             </a>
 
-            <a href="../pedidos/gestion_pedidos.php" 
+            <a href="{{ route('gestion_com') }}" 
                 class="list-group-item list-group-item-action">
-                🧾 Pedidos
+                🌍 Comprar
             </a>
 
-            <a href="../sistemas_estelares/gestion_sistemas_estelares.php" 
+            <a href="{{ route('gestion_alq') }}" 
                 class="list-group-item list-group-item-action">
-                🔒 Sistemas estelares
+                🧾 Alquiler
             </a>
 
-            <a href="../panel.php" 
+            <a href="{{ route('gestion_pag') }}" 
+                class="list-group-item list-group-item-action">
+                🔒 Pagos
+            </a>
+
+            <a href="{{ route('gestion_usr') }}" 
+                class="list-group-item list-group-item-action">
+                💻 Usuario
+            </a>
+
+            <a href="{{ route('panel_control') }}" 
                 class="list-group-item list-group-item-action">
                 💻 Panel de control
             </a>
+
         </div>
 
     </aside>
 
     <div class="container-fluid mt-4" style="padding-left: 300px;">
 
-        <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Clientes</h2>
+        <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Usuarios</h2>
 
         <div class="card shadow" style="max-width: 1500px; width: 100%;">
-            <div class="card-header bg-primary text-white">📋 Lista de Clientes</div>
+            <div class="card-header bg-primary text-white">📋 Lista de Usuarios</div>
             <div class="card-body">
 
                 <!-- Alertas de error  -->
                 <?php
-                    // if (isset($_GET["cli"])) {
-                    //     if ($_GET["cli"] == 0) {
-                    //         echo '<div class="alert alert-success">✅ Cliente insertado correctamente.</div>';
+                    // if (isset($_GET["sis"])) {
+                    //     if ($_GET["sis"] == 0) {
+                    //         echo '<div class="alert alert-success">✅ Usuario insertado correctamente.</div>';
                     //     }
-                    //     if ($_GET["cli"] == 1) {
+                    //     if ($_GET["sis"] == 1) {
                     //         echo '<div class="alert alert-warning">⚠️ El email ya existe en la base de datos.</div>';
                     //     }
-                    //     if ($_GET["cli"] == 2) {
+                    //     if ($_GET["sis"] == 2) {
                     //         echo '<div class="alert alert-danger">❌ Ha ocurrido un error al intentar insertar el usuario.</div>';
                     //     }
                     // }
                 ?>
 
                 <div class="row mb-3 me-2 float-end">
-                    <a href="ins_cli_mysqli.php" class="btn btn-success">➕ Nuevo Cliente</a>
+                    <a href="{{ route('ins_usr') }}" class="btn btn-success">➕ Nuevo Usuario</a>  
                 </div>
 
                 <table class="table table-striped table-hover align-middle">
@@ -145,63 +151,48 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Apellidos</th>
                             <th>Email</th>
-                            <th>Género</th>
-                            <th>Dirección</th>
-                            <th>Código Postal</th>
-                            <th>Población</th>
-                            <th>Provincia</th>
-                            <th>Acciones</th>
+                            <th>Rol</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($clientes as $c): ?>
+                        @foreach ($usuarios as $usr)
                         <tr>
-                            <td><?= $c['id'] ?></td>
-                            <td><?= htmlspecialchars($c['nombre']) ?></td>
-                            <td><?= htmlspecialchars($c['apellidos']) ?></td>
-                            <td><?= htmlspecialchars($c['email']) ?></td>
-                            <td><?= $c['genero'] ?></td>
-                            <td><?= htmlspecialchars($c['direccion']) ?></td>
-                            <td><?= $c['codpostal'] ?></td>
-                            <td><?= htmlspecialchars($c['poblacion']) ?></td>
-                            <td><?= htmlspecialchars($c['provincia']) ?></td>
+                            <td>{{ $loop->iteration }}. {{ $usr->id }}</td>
+                            <td>{{ $loop->iteration }}. {{ $usr->nombre }}</td>
+                            <td>{{ $loop->iteration }}. {{ $usr->email }}</td>
+                            <td>{{ $loop->iteration }}. {{ $usr->rol }}</td>
                             <td>
-                                <?php if ($rol == 1): ?>
-                                    <a href="edit_cli_mysqli.php?edit=<?= $c['id'] ?>"
+                                <!-- Solo disponble la edicion y eliminacion para administradores -->
+                                 
+                                <!-- @if ($rol == 1) 
+                                    <a href="edit_usr_mysqli.php?edit={{ $usr->id }}"
                                     class="btn btn-sm btn-warning">✏️</a>
 
                                     <button type="button"
                                             class="btn btn-danger"
-                                            onclick="eliminarCliente(<?= $c['id']; ?>)">
+                                            onclick="eliminarUsuario('{{ $usr->id }}')">
                                         🗑️
                                     </button>
-                                <?php else: ?>
+                                @else
                                     <span class="text-muted">—</span>
-                                <?php endif; ?>
+                                @endif  -->
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                        @endforeach
                     </tbody>
                 </table>
                 <!-- Metodo de paginacion de maximo en 10 -->
-                <nav aria-label="Paginacion">
-                    <ul class="pagination justify-content-center mt-3">
-                        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-                            <li class="page-item<?php if ($i == $page) echo ' active'; ?>">
-                                <a class="page-link" href="gestion_clientes.php?page=<?= $i ?>">
-                                    <?= $i ?>
-                                </a>
-                            </li>
-                        <?php endfor; ?>
-                    </ul>
+                <nav aria-label="Paginación">
+                  <ul class="pagination justify-content-center mt-3">
+                    
+                  </ul>
                 </nav>
             </div>
         </div>
     </div>
 
-    <!-- Confirmación de eliminacion de cliente -->
+    <!-- Confirmación de eliminacion de usuario -->
     <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -210,7 +201,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Seguro que deseas eliminar este Cliente?
+                    ¿Seguro que deseas eliminar este Usuario?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -220,19 +211,19 @@
         </div>
     </div>
     
-    <!-- Pequeño script para el uso de una funcion que elimina de la tabla clientes el dato elegido -->
-    <script>
-        function eliminarCliente(numcliente) 
+    <!-- Pequeño script para el uso de una funcion que elimina de la tabla Usuario el dato elegido -->
+    <!-- <script>
+        function eliminarUsuario(numusuario) 
         {
             const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
             modal.show();
             document.getElementById('confirmDeleteBtn').onclick = () => 
             {
-                window.location.href = 'gestion_clientes.php?eliminar=' + numcliente;
+                window.location.href = 'gestion_usuarios.php?eliminar=' + numusuario;
                 modal.hide();
             };
         }
-    </script>
+    </script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

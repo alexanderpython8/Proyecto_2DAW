@@ -20,6 +20,7 @@
                             <li><a href="#">Alquilar</a></li>
                             <li><a href="#">Catálogo</a></li>
                             <li><a href="#">Nuevo</a></li>
+                            <li><a href="{{ route('inserccion_usr') }}">insertar</a></li>
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>

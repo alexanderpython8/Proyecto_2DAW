@@ -67,15 +67,15 @@
             style="width: 260px; min-height: 100vh; position: fixed; left:0; top:0;">
 
         <div class="text-center mb-4">
-            <img src="../img/<?= $img ?>"
+            <img src="../img/Comprar.jpg"
                     class="rounded-circle mb-2" width="80" height="80" alt="avatar">
 
-            <h5 class="mb-0"><?= htmlspecialchars($nombre) ?></h5>
-            <small class="text-light"><?= htmlspecialchars($rol) == 1 ? "Administrador" : "Usuario" ?></small>
+            <h5>Usuario</h5>
+            <small>Administrador</small>
 
             <!-- Botón para cerrar sesión y volver al index -->
             <div class="mt-2">
-                <a href="../logout.php" class="btn btn-danger">Cerrar sesión</a>
+                <a href="{{ route('welcome') }}" class="btn btn-danger">Cerrar sesión</a>
             </div>
         </div>
 
@@ -83,31 +83,32 @@
 
         <div class="list-group">
 
-            <!-- Disponible solo para administradores -->
-            <?php if ($rol == 1): ?>
-                <a href="../clientes/gestion_clientes.php"
-                    class="list-group-item list-group-item-action">
-                    👥 Clientes
-                </a>
-            <?php endif; ?>
-
-            <a href="gestion_planetas.php" 
-                class="list-group-item list-group-item-action"
-                <?= basename($_SERVER['PHP_SELF']) == 'gestion_planetas.php' ? 'active' : '' ?>">
-                🌍 Planetas
-            </a>
-
-            <a href="../pedidos/gestion_pedidos.php" 
+            <a href="{{ route('gestion_ast') }}"
                 class="list-group-item list-group-item-action">
-                🧾 Pedidos
+                👥 Astros
             </a>
 
-            <a href="../sistemas_estelares/gestion_sistemas_estelares.php" 
+            <a href="{{ route('gestion_com') }}" 
                 class="list-group-item list-group-item-action">
-                🔒 Sistemas estelares
+                🌍 Comprar
             </a>
 
-            <a href="../panel.php" 
+            <a href="{{ route('gestion_alq') }}" 
+                class="list-group-item list-group-item-action">
+                🧾 Alquiler
+            </a>
+
+            <a href="{{ route('gestion_pag') }}" 
+                class="list-group-item list-group-item-action">
+                🔒 Pagos
+            </a>
+
+            <a href="{{ route('gestion_usr') }}" 
+                class="list-group-item list-group-item-action">
+                💻 Usuario
+            </a>
+
+            <a href="{{ route('panel_control') }}" 
                 class="list-group-item list-group-item-action">
                 💻 Panel de control
             </a>
