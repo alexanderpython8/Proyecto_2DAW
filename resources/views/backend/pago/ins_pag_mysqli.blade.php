@@ -1,69 +1,18 @@
-<?php
-    // session_start();
+@extends('layouts.insertar')
 
-    // // Verificacion si es Administrador par poder acceder a esta pagina
-    // if(!isset($_SESSION["nombre"]) || $_SESSION["rol"] != 1) {
-    //     header("location:../panel.php");
-    //     die();
-    // }
+@section('title', 'Insertar Pago')
 
-    // include("../db/db.inc");//mysqli
-    
-    // if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) 
-    // {
-    //     //Extraigo todos los valores necesarios para la insercion de la tabla
-    //     $nombre = htmlspecialchars(($_POST["nombre"]));
-    //     $tipo_estrella = htmlspecialchars(($_POST["tipo_estrella"]));
-    //     $numero_planetas = intval(($_POST["numero_planetas"]));
-    //     $distancia = intval(($_POST["distancia"]));
-    //     $descripcion = htmlspecialchars(($_POST["descripcion"]));
-
-    //     // Confirmo si no hay un sistema con el mismo nombre
-    //     $sql_nombre = "SELECT * FROM sistemas_estelares WHERE nombre='$nombre'";
-    //     $res = mysqli_query($conn, $sql_nombre);
-        
-    //     if (mysqli_num_rows($res) > 0)
-    //     {
-    //         header("location:gestion_sistemas_estelares.php?sis=1");
-    //         die();
-    //     }
-
-    //     //Inserto el nuevo dato a la tabla
-    //     $sql = "INSERT INTO sistemas_estelares(nombre, tipo_estrella, numero_planetas, distancia, descripcion)
-    //     VALUES ('$nombre', '$tipo_estrella', '$numero_planetas', $distancia, '$descripcion');";
-        
-    //     if (mysqli_query($conn, $sql)) 
-    //     {
-    //         header("location:gestion_sistemas_estelares.php?sis=0"); //Si todo ok
-    //     }
-    //     else 
-    //     {
-    //         header("location:gestion_sistemas_estelares.php?sis=2"); //Si no actualizo
-    //     }
-    //     die();
-    // }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/estilo_ins.css">
-    <title>Document</title>
-</head>
-<body>
+@section('body')
     <!-- Boton para volver a la gestión -->
     <div class="card-header bg-primary d-flex align-items-center">
-        <a href="./gestion_sistemas_estelares.php" class="btn-back">
+        <a href="{{ route('gestion_pag') }}" class="btn-back">
             ⬅ Volver
         </a>
     </div>
     <main class="container mt-5">
         <div class="card">
             <div class="card-header bg-primary">
-                <h2 class="text-light">Registro de Sistema Estelar con MySQL</h2>
+                <h2 class="text-light">Registro de Pago</h2>
             </div>
             <div class="card-body">
                 <form method="POST">
@@ -89,12 +38,10 @@
                             <input type="text" class="form-control" id="descripcion" name="descripcion" required>
                         </div>
                         <!-- Confirmo la inserccion de la tabla -->
-                        <button type="submit" class="btn btn-success mt-5">Guardar Sistema</button>
+                        <button type="submit" class="btn btn-success mt-5">Guardar Pago</button>
                     </div>
                 </form>
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection

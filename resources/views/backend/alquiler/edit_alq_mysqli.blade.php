@@ -1,69 +1,8 @@
-<?php
-    // session_start();
-    
-    // // Verificacion si es Administrador par poder acceder a esta pagina
-    // if(!isset($_SESSION["nombre"]) || $_SESSION["rol"] != 1) {
-    //     header("location:../panel.php");
-    //     die();
-    // }
-    
-    // include("../db/db.inc");//mysqli
+@extends('layouts.editar')
 
-    // if (isset($_POST["accion"]) && $_POST["accion"] == "editar") 
-    // {// cuando pulse actualizar
-        
-    //     if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) 
-    //     {
-    //         // Extraigo los datos necesarios para la edición de los datos de la tabla
-    //         $nombre = htmlspecialchars(($_POST["nombre"]));
-    //         $apellidos = htmlspecialchars(($_POST["apellidos"]));
-    //         $email = htmlspecialchars(($_POST["email"]));
-    //         $direccion = htmlspecialchars(($_POST["direccion"]));
-    //         $genero = htmlspecialchars(($_POST["genero"]));
-    //         $codpostal = htmlspecialchars(($_POST["codpostal"]));
-    //         $poblacion = htmlspecialchars(($_POST["poblacion"]));
-    //         $provincia = htmlspecialchars(($_POST["provincia"]));
-    //         $id = intval($_POST["id"]);
-            
-    //         $sql_email = "SELECT id FROM clientes WHERE email='$email' AND id != $id";
-    //         $res = mysqli_query($conn, $sql_email);
-            
-    //         if (mysqli_num_rows($res) > 0)
-    //         {
-    //             header("location:gestion_clientes.php?cli=1");
-    //             die();
-    //         }
+@section('title', 'Editar Alquiler')
 
-    //         $sql = "UPDATE clientes SET nombre = '$nombre', apellidos = '$apellidos', genero = '$genero', direccion = '$direccion', 
-    //                 codpostal = '$codpostal', poblacion = '$poblacion', provincia = '$provincia', email = '$email' WHERE id = $id";
-            
-    //         if (mysqli_query($conn, $sql)) 
-    //         {
-    //             header("location:gestion_clientes.php?cli=0"); //Si todo ok
-    //         }
-    //         else 
-    //         {
-    //             header("location:gestion_clientes.php?cli=2"); //Si no actualizo
-    //         }
-    //         die();
-    //     }
-    // }
-    // if(!isset($_GET["edit"])) {
-    //     header("location:gestion_clientes.php");
-    //     die();
-    // }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/estilo_ins.css">
-    <title>Document</title>
-</head>
-<body>
+@section('body')
     <!-- Boton para volver a la gestión -->
     <div class="card-header bg-primary d-flex align-items-center">
         <a href="./gestion_clientes.php" class="btn-back">
@@ -143,6 +82,5 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection
+

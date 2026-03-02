@@ -1,128 +1,8 @@
-<?php
-    // session_start();
+@extends('layouts.editar')
 
-    // // Verificacion si es Administrador par poder acceder a esta pagina
-    // if(!isset($_SESSION["nombre"]) || $_SESSION["rol"] != 1) {
-    //     header("location:../panel.php");
-    //     die();
-    // }
-    
-    // include("../db/db.inc");//mysqli
+@section('title', 'Editar Compra')
 
-    // $id_pedido = intval($_GET["edit"]);
-    // $sql_pedido_actual = "SELECT id_planeta FROM pedidos WHERE id_pedido = $id_pedido";
-    // $res_pedido_actual = mysqli_query($conn, $sql_pedido_actual);
-    // $pedido_actual = mysqli_fetch_assoc($res_pedido_actual);
-    // $id_planeta_actual = $pedido_actual['id_planeta'];
-
-    // // Extraigo solo los planetas que no estan vendidos y tambien  el que esta justo ahora en el pedido por si solo se quiere cambiar el cliente
-    // $sql_planetas = "SELECT id, nombre FROM planetas WHERE vendido='N' AND estado = 1 OR id = $id_planeta_actual ORDER BY nombre";
-    // $res_planetas = mysqli_query($conn, $sql_planetas);
-    // $planetas = [];
-
-    // if ($res_planetas) 
-    // {   //Guardo todos en un array
-    //     while ($row = mysqli_fetch_assoc($res_planetas)) 
-    //     {
-    //         $planetas[] = $row;
-    //     }
-    //     mysqli_free_result($res_planetas);
-    // }
-
-    // //Extraigo todos los clientes
-    // $sql_clientes = "SELECT id, nombre FROM clientes ORDER BY nombre";
-    // $res_clientes = mysqli_query($conn, $sql_clientes);
-    // $clientes = [];
-
-    // if ($res_clientes) 
-    // {   //Los guardo todos en un array
-    //     while ($row = mysqli_fetch_assoc($res_clientes)) 
-    //     {
-    //         $clientes[] = $row;
-    //     }
-    //     mysqli_free_result($res_clientes);
-    // }
-
-    // if (isset($_POST["accion"]) && $_POST["accion"] == "editar") 
-    // {// cuando pulse actualizar
-        
-    //     if(isset($_POST["id_planeta"]) && !empty($_POST["id_planeta"])) 
-    //     {
-    //         // Extraigo los datos necesarios para la edición de los datos de la tabla
-    //         $id_planeta = intval(($_POST["id_planeta"]));
-    //         $id_cliente = intval(($_POST["id_cliente"]));
-    //         $total = intval(($_POST["total"]));
-    //         $id_pedido = intval($_POST["id_pedido"]);
-    //         $descuento = intval($_POST["descuento"]);
-            
-
-    //         $sql_planeta = "SELECT id_pedido FROM pedidos WHERE id_planeta='$id_planeta' AND id_pedido != $id_pedido";
-    //         $res = mysqli_query($conn, $sql_planeta);
-            
-    //         if (mysqli_num_rows($res) > 0)
-    //         {
-    //             header("location:gestion_pedidos.php?ped=1");
-    //             die();
-    //         }
-
-    //         // comprobar cliente
-    //         $sql_cliente = "SELECT id FROM clientes WHERE id = $id_cliente";
-    //         $res_cliente = mysqli_query($conn, $sql_cliente);
-    //         if (mysqli_num_rows($res_cliente) == 0) {
-    //             header("location:gestion_pedidos.php?ped=3");
-    //             die();
-    //         }
-
-    //         // comprobar planeta
-    //         $sql_planeta = "SELECT id FROM planetas WHERE id = $id_planeta";
-    //         $res_planeta = mysqli_query($conn, $sql_planeta);
-    //         if (mysqli_num_rows($res_planeta) == 0) {
-    //             header("location:gestion_pedidos.php?ped=4");
-    //             die();
-    //         }
-            
-    //         // Aplico el descuento
-    //         $totalDescuento = $total * (1 - $descuento / 100);
-
-    //         // Actualizo el pedido
-    //         $sql = "UPDATE pedidos SET id_planeta = '$id_planeta', id_cliente = '$id_cliente', total = '$total', descuento = '$descuento'
-    //             WHERE id_pedido = $id_pedido";
-            
-    //         //Actualizo el planeta que se eligio como vendido, para que no se pueda volver a pedir
-    //         $sql_update = "UPDATE planetas SET vendido='V' WHERE id=$id_planeta";
-    //         mysqli_query($conn, $sql_update);
-
-    //         // El que fue anterior a la actualizacion se pasara a no vendido para poder ser pedido
-    //         $sql_update_planeta_anteriro = "UPDATE planetas SET vendido='N' WHERE id=$id_planeta_actual";
-    //         mysqli_query($conn, $sql_update_planeta_anteriro);
-            
-    //         if (mysqli_query($conn, $sql)) 
-    //         {
-    //             header("location:gestion_pedidos.php?ped=0"); //Si todo ok
-    //         }
-    //         else 
-    //         {
-    //             header("location:gestion_pedidos.php?ped=2"); //Si no actualizo
-    //         }
-    //         die();
-    //     }
-    // }
-    // if(!isset($_GET["edit"])) {
-    //     header("location:gestion_pedidos.php");
-    //     die();
-    // }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/estilo_ins.css">
-    <title>Document</title>
-</head>
-<body>
+@section('body')
     <!-- Boton para volver a la gestión -->
     <div class="card-header bg-primary d-flex align-items-center">
         <a href="./gestion_pedidos.php" class="btn-back">
@@ -158,7 +38,7 @@
                             <select name="id_cliente" id="id_cliente" class="form-select" required>
                                 <option value="" selected disabled>Selecciona un cliente</option>
                                 <!-- Confirmo que el array no esta vacio -->
-                                <?php if (!empty($clientes)): ?> 
+                                <?php if (!empty($clientes)): ?>
                                     <!-- Muestro todos los clientes disponibles con el id y el nombre -->
                                     <?php foreach ($clientes as $c): ?>
                                         <option value="<?php echo intval($c['id']); ?>">
@@ -206,6 +86,4 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection

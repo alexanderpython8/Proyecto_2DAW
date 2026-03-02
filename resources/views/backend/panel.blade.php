@@ -1,34 +1,16 @@
-<?php
-    // session_start();
-    // if(!isset($_SESSION["nombre"])) {
-    //     header("location:../index.php");
-    //     die();
-    // }
-
-    // include("db/db_pdo.inc"); 
-
-    // $nombre = $_SESSION["nombre"];
-    // $rol = $_SESSION["rol"];
-    // $img = $_SESSION["img"] ?? '';
-
-    // // Si el usuario no tiene img se pone una por defecto
-    // if (empty($img)) {
-    //     $img = 'admin.jpg';
-    // }
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/estilo_panel.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/estilo_panel.css') }}">
     <title>Panel de Control</title>
 </head>
 <body>
     <header class="top-header">
         <div class="user-info">
-            <img src="{{ asset('img/Comprar.jpg') }}" alt="avatar" class="avatar">
-            
+            <img src="{{ asset('assets/img/Comprar.jpg') }}" alt="avatar" class="avatar">
+
             <div class="user-text">
                 <h5>Usuario</h5>
                 <small>Administrador</small>

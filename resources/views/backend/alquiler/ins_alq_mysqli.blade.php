@@ -1,62 +1,8 @@
-<?php
-    // session_start();
+@extends('layouts.insertar')
 
-    // // Verificacion si es Administrador par poder acceder a esta pagina
-    // if(!isset($_SESSION["nombre"]) || $_SESSION["rol"] != 1) {
-    //     header("location:../panel.php");
-    //     die();
-    // }
-    
-    // include("../db/db.inc");//mysqli
-    // if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) 
-    // {
-    //     //Extraigo todos los valores necesarios para la insercion de la tabla
-    //     $nombre = htmlspecialchars(($_POST["nombre"]));
-    //     $apellidos = htmlspecialchars(($_POST["apellidos"]));
-    //     $email = htmlspecialchars(($_POST["email"]));
-    //     $password = htmlspecialchars((sha1($_POST["password"])));
-    //     $direccion = htmlspecialchars(($_POST["direccion"]));
-    //     $genero = htmlspecialchars(($_POST["genero"]));
-    //     $codpostal = htmlspecialchars(($_POST["codpostal"]));
-    //     $poblacion = htmlspecialchars(($_POST["poblacion"]));
-    //     $provincia = htmlspecialchars(($_POST["provincia"]));
+@section('title', 'Insertar Alquiler')
 
-    //     // Confirmo si no hay un email igual en la tabla clientes
-    //     $sql_email = "SELECT * FROM clientes WHERE email='$email'";
-    //     $res = mysqli_query($conn, $sql_email);
-        
-    //     if (mysqli_num_rows($res) > 0)
-    //     {
-    //         header("location:gestion_clientes.php?cli=1");
-    //         die();
-    //     }
-
-    //     // Inserto el nuevo valor en la tabla clientes
-    //     $sql = "INSERT INTO clientes(nombre, apellidos, genero, direccion, codpostal, poblacion, provincia, password, email)
-    //     VALUES ('$nombre', '$apellidos', '$genero', '$direccion', '$codpostal', '$poblacion', '$provincia', '$password', '$email');";
-        
-    //     if (mysqli_query($conn, $sql)) 
-    //     {
-    //         header("location:gestion_clientes.php?cli=0");
-    //     }
-    //     else 
-    //     {
-    //         header("location:gestion_clientes.php?cli=2");
-    //     }
-    //     die();
-    // }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/estilo_ins.css">
-    <title>Document</title>
-</head>
-<body>
+@section('body')
     <!-- Boton para volver a la gestión -->
     <div class="card-header bg-primary d-flex align-items-center">
         <a href="./gestion_clientes.php" class="btn-back">
@@ -119,6 +65,4 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection

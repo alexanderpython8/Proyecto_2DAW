@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UsuarioController extends Controller
 {
     public function index() {
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::orderBy('id', 'asc')->get();
         return view('backend.usuarios.gestion_usuarios', compact('usuarios'));
     }
 

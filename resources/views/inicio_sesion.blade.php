@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/estilo_iniciosesion.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/estilo_iniciosesion.css') }}">
     <title>Iniciar sesión</title>
 </head>
 <body>
@@ -25,25 +25,25 @@
                 <ul>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('img/facebook.avif') }}" alt="">
+                            <img src="{{ asset('assets/img/facebook.avif') }}" alt="">
                             Facebook
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('img/insta.avif') }}" alt="">
+                            <img src="{{ asset('assets/img/insta.avif') }}" alt="">
                             Instagram
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('img/x.avif') }}" alt="">
+                            <img src="{{ asset('assets/img/x.avif') }}" alt="">
                             X
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('img/youtube.avif') }}" alt="">
+                            <img src="{{ asset('assets/img/youtube.avif') }}" alt="">
                             YouTube
                         </a>
                     </li>
@@ -52,15 +52,15 @@
         </article>
         <article>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facere saepe odit, eum commodi 
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facere saepe odit, eum commodi
                 repudiandae animi fuga rem corrupti mollitia quisquam sit at quod nobis quo. Pariatur suscipit assumenda excepturi?
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis iusto ipsa inventore 
-                voluptas aliquid animi veniam sequi dolore id vitae earum, iste, aperiam autem distinctio minus 
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis iusto ipsa inventore
+                voluptas aliquid animi veniam sequi dolore id vitae earum, iste, aperiam autem distinctio minus
                 voluptatum quisquam similique amet.
             </p>
             <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis quisquam explicabo veniam 
-                hic cupiditate repellat autem animi consequuntur praesentium? Tempore nobis molestias, incidunt 
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis quisquam explicabo veniam
+                hic cupiditate repellat autem animi consequuntur praesentium? Tempore nobis molestias, incidunt
                 aliquid reiciendis quidem cupiditate iste ratione!
             </p>
             <p>&copy; 2026 Alejandro Guaman Zuñiga</p>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/estilo_compras.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/estilo_compras.css') }}">
     <title>Compras</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
                     <a href="{{ route('login') }}">Iniciar sesión</a>
                 </li>
                 <li>
-                    <button><img src="{{ asset('img/buscador.png') }}" alt="Buscador"></button>
+                    <button><img src="{{ asset('assets/img/buscador.png') }}" alt="Buscador"></button>
                     <input type="text" id="busqueda" placeholder="Buscar">
                 </li>
             </ul>
@@ -38,7 +38,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/jupiter.jpg') }}" alt="">
+                            <img src="{{ asset('assets/img/jupiter.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Júpiter</h3>
@@ -49,7 +49,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/Gemini_Generated_Image_bwq4xobwq4xobwq4.png') }}" alt="">
+                            <img src="{{ asset('assets/img/Gemini_Generated_Image_bwq4xobwq4xobwq4.png') }}" alt="">
                         </div>
                         <div>
                             <h3>Alfa Centauri A</h3>
@@ -60,7 +60,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/urano.jpg') }}" alt="">
+                            <img src="{{ asset('assets/img/urano.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Urano</h3>
@@ -71,7 +71,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/planetas.jpeg') }}" alt="">
+                            <img src="{{ asset('assets/img/planetas.jpeg') }}" alt="">
                         </div>
                         <div>
                             <h3>Plutón</h3>
@@ -82,7 +82,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/mercurio.jpg') }}" alt="">
+                            <img src="{{ asset('assets/img/mercurio.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Mercurio</h3>
@@ -93,7 +93,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/agujeronegro.webp') }}" alt="">
+                            <img src="{{ asset('assets/img/agujeronegro.webp') }}" alt="">
                         </div>
                         <div>
                             <h3>Cygnus X-1</h3>
@@ -104,7 +104,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/neptuno.jpg') }}" alt="">
+                            <img src="{{ asset('assets/img/neptuno.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Neptuno</h3>
@@ -115,7 +115,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/saturno.jpg') }}" alt="">
+                            <img src="{{ asset('assets/img/saturno.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Saturno</h3>
@@ -126,7 +126,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('img/proximacentaurib.jpg') }}" alt="">
+                            <img src="{{ asset('assets/img/proximacentaurib.jpg') }}" alt="">
                         </div>
                         <div>
                             <h3>Próxima Centauri B</h3>
@@ -140,7 +140,7 @@
             <section>
                 <ul>
                     <h1>Júpiter</h1>
-                    <p>Es el gigante de gas que domina el sistema solar. Tan grande que en su interior cabrían 1.300 
+                    <p>Es el gigante de gas que domina el sistema solar. Tan grande que en su interior cabrían 1.300
                         Tierras, destaca por sus coloridas bandas de nubes y su legendaria tormenta, la Gran Mancha Roja.
                     </p>
 
@@ -153,7 +153,7 @@
                 </ul>
             </section>
             <section>
-                <img src="{{ asset('img/jupiter_principal.webp') }}" alt="">
+                <img src="{{ asset('assets/img/jupiter_principal.webp') }}" alt="">
             </section>
         </article>
     </main>
@@ -184,25 +184,25 @@
                 <ul>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('img/facebook.avif') }}" alt="">
+                            <img src="{{ asset('assets/img/facebook.avif') }}" alt="">
                             Facebook
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('img/insta.avif') }}" alt="">
+                            <img src="{{ asset('assets/img/insta.avif') }}" alt="">
                             Instagram
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('img/x.avif') }}" alt="">
+                            <img src="{{ asset('assets/img/x.avif') }}" alt="">
                             X
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <img src="{{ asset('img/youtube.avif') }}" alt="">
+                            <img src="{{ asset('assets/img/youtube.avif') }}" alt="">
                             YouTube
                         </a>
                     </li>
@@ -211,15 +211,15 @@
         </article>
         <article>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facere saepe odit, eum commodi 
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facere saepe odit, eum commodi
                 repudiandae animi fuga rem corrupti mollitia quisquam sit at quod nobis quo. Pariatur suscipit assumenda excepturi?
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis iusto ipsa inventore 
-                voluptas aliquid animi veniam sequi dolore id vitae earum, iste, aperiam autem distinctio minus 
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis iusto ipsa inventore
+                voluptas aliquid animi veniam sequi dolore id vitae earum, iste, aperiam autem distinctio minus
                 voluptatum quisquam similique amet.
             </p>
             <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis quisquam explicabo veniam 
-                hic cupiditate repellat autem animi consequuntur praesentium? Tempore nobis molestias, incidunt 
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis quisquam explicabo veniam
+                hic cupiditate repellat autem animi consequuntur praesentium? Tempore nobis molestias, incidunt
                 aliquid reiciendis quidem cupiditate iste ratione!
             </p>
             <p>&copy; 2026 Alejandro Guaman Zuñiga</p>

@@ -42,7 +42,7 @@ body main h1 a {
   display: inline-block;
   animation: h1-movimiento 1.5s ease-in-out infinite alternate;
 }
-body main form {
+body main div {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@ body main form {
   height: 460px;
   margin-top: 2%;
 }
-body main form h2 {
+body main div h2 {
   text-align: center;
   font-weight: 100;
   padding-top: 40px;
@@ -62,7 +62,7 @@ body main form h2 {
   border-bottom: 1px solid black;
   width: 52%;
 }
-body main form input {
+body main div input {
   color: #ffffff;
   border: 1.5px solid black;
   border-radius: 3px;
@@ -74,15 +74,15 @@ body main form input {
   letter-spacing: 1px;
   background-color: #181818;
 }
-body main form input::-moz-placeholder {
+body main div input::-moz-placeholder {
   color: #ffffff;
   opacity: 1;
 }
-body main form input::placeholder {
+body main div input::placeholder {
   color: #ffffff;
   opacity: 1;
 }
-body main form button {
+body main div button {
   font-weight: lighter;
   width: 72%;
   font-size: 20px;
@@ -92,30 +92,30 @@ body main form button {
   border-radius: 8px;
   transition: all 0.4s ease;
 }
-body main form button:hover {
+body main div button:hover {
   background-color: #121826;
   color: #ffffff;
 }
-body main form a {
+body main div a {
   color: #5A8DEE;
   text-decoration: none;
   padding-top: 20px;
   letter-spacing: 1px;
   transition: all 0.2s ease;
 }
-body main form a:hover {
+body main div a:hover {
   color: #181818;
 }
-body main form p {
+body main div p {
   padding-top: 20px;
   letter-spacing: 1px;
 }
-body main form p a {
+body main div p a {
   color: #5A8DEE;
   text-decoration: underline;
   transition: all 0.2s ease;
 }
-body main form p a:hover {
+body main div p a:hover {
   color: #181818;
 }
 body {

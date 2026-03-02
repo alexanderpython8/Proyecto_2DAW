@@ -1,85 +1,8 @@
-<?php
-    // session_start();
+@extends('layouts.editar')
 
-    // // Verificacion si es Administrador par poder acceder a esta pagina
-    // if(!isset($_SESSION["nombre"]) || $_SESSION["rol"] != 1) {
-    //     header("location:../panel.php");
-    //     die();
-    // }
-    
-    // include("../db/db.inc");//mysqli
+@section('title', 'Editar Astros')
 
-    // // Extraigo todos los sistemas estelares disponibles
-    // $sql_sistemas = "SELECT id_sistema, nombre FROM sistemas_estelares ORDER BY nombre";
-    // $res_sistemas = mysqli_query($conn, $sql_sistemas);
-    // $sistemas = [];
-
-    // if ($res_sistemas) 
-    // {
-    //     while ($row = mysqli_fetch_assoc($res_sistemas)) 
-    //     {
-    //         // Guardo los valores en un array
-    //         $sistemas[] = $row;
-    //     }
-    //     mysqli_free_result($res_sistemas);
-    // }
-
-    // // cuando pulse actualizar
-    // if (isset($_POST["accion"]) && $_POST["accion"] == "editar") 
-    // {
-        
-    //     if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) 
-    //     {
-    //         // Extraigo los datos necesarios para la edición de los datos de la tabla
-    //         $nombre = htmlspecialchars(($_POST["nombre"]));
-    //         $descripcion = htmlspecialchars(($_POST["descripcion"]));
-    //         $masa = htmlspecialchars(($_POST["masa"]));
-    //         $distancia = intval(($_POST["distancia"]));
-    //         $precio = intval(($_POST["precio"]));
-    //         $id_sistema = intval(($_POST["id_sistema"]));
-    //         $id = intval($_POST["id"]);
-            
-    //         // Verifico que no haya ningun planeta con el mismo nombre
-    //         $sql_nombre = "SELECT id FROM planetas WHERE nombre='$nombre' AND id != $id";
-    //         $res = mysqli_query($conn, $sql_nombre);
-            
-    //         if (mysqli_num_rows($res) > 0)
-    //         {
-    //             header("location:gestion_planetas.php?pla=1");
-    //             die();
-    //         }
-
-    //         // Actualizo el planeta
-    //         $sql = "UPDATE planetas SET nombre = '$nombre', descripcion = '$descripcion', masa = '$masa', distancia = '$distancia', 
-    //                 precio = '$precio', id_sistema = '$id_sistema' WHERE id = $id";
-            
-    //         if (mysqli_query($conn, $sql)) 
-    //         {
-    //             header("location:gestion_planetas.php?pla=0"); //Si todo ok
-    //         }
-    //         else 
-    //         {
-    //             header("location:gestion_planetas.php?pla=2"); //Si no actualizo
-    //         }
-    //         die();
-    //     }
-    // }
-    // if(!isset($_GET["edit"])) {
-    //     header("location:gestion_planetas.php");
-    //     die();
-    // }
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/estilo_ins.css">
-    <title>Document</title>
-</head>
-<body>
+@section('body')
     <!-- Boton para volver a la gestión -->
     <div class="card-header bg-primary d-flex align-items-center">
         <a href="./gestion_planetas.php" class="btn-back">
@@ -157,6 +80,4 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection

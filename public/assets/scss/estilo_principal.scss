@@ -14,6 +14,7 @@ $dropdown-hover-bg: #1A1F33;
 $border-divider: #9BA4B5;  
 
 // Variables con transparencias (RGBA)
+
 $search-bg: rgba(9, 13, 23, 0.6);    
 $search-hover-bg: rgba(98, 96, 96, 0.6); 
 $nav-bg-translucent: rgba(18, 32, 62, 0.8); 
@@ -49,7 +50,7 @@ $nav-bg-translucent: rgba(18, 32, 62, 0.8);
     @if $size == medium {
         @media (min-width: 801px) 
         { 
-            @content 
+            @content;
         }
     }
     @else if $size == small {
@@ -98,9 +99,20 @@ body {
             padding: 5px 0;
             width: 100%;
 
+            @include responsive(small) {
+                padding: 10px 0;
+                position:relative;
+                top: 0;
+            }
+
             > ul {
                 display: flex;
                 list-style: none;
+
+                @include responsive(small) {
+                    flex-direction: column;
+                    align-items: center;
+                }
 
                 li:first-child {
                     h1 
@@ -114,6 +126,10 @@ body {
                         font-style: italic;
                         padding-top: 5%;
                         text-shadow: 5px 5px 2px $black;
+
+                        @include responsive(small) {
+                            padding-right: 0%;
+                        }
                         a {
                             color: $white;
                             text-decoration: none;
@@ -127,6 +143,10 @@ body {
                     position: relative;
                     width: 70%;
 
+                    @include responsive(small) {
+                        flex-direction: column;
+                    }
+
                     a {
                         text-decoration: none;
                         display: initial;
@@ -138,6 +158,10 @@ body {
 
                         &:hover {
                             color: $accent-color;
+                        }
+                        @include responsive(small) {
+                            padding: 11px 0;
+                            font-size: 16px;
                         }
                     }
 
@@ -165,13 +189,24 @@ body {
                             margin: 0;
                             padding: 0;
                             display: none;
+                            z-index: 2;
                             flex-direction: column;
                             min-width: 110px;
+
+                            @include responsive(small) {
+                                top: 0;
+                                left: 80px;
+                                background-color: $dropdown-hover-bg;
+                            }
 
                             li {
                                 padding: 10px 10px;
                                 width: 110px;
                                 margin: 0;
+
+                                @include responsive(small) {
+                                    
+                                }
                                 a {
                                     color: $text-light;
                                     font-size: 15px;
@@ -198,6 +233,10 @@ body {
                     width: 380px;
                     padding-right: 10px;
 
+                    @include responsive(small) {
+                        padding: 0;
+                    }
+
                     button {
                         background-color: $search-bg;
                         border-radius: 100px;
@@ -220,7 +259,12 @@ body {
                         border-radius: 5px;
                         color: $bg-darker;
                         font-weight: bold;
+
                         @include transition(all, 0.5s, linear);
+
+                        @include responsive(small) {
+                            width: 100%;
+                        }
 
                         &:hover {
                             width: 100%;
@@ -290,9 +334,19 @@ body {
             justify-content: space-around;
             padding: 80px 12% 140px 12%;
 
+            @include responsive(small) {
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0 30px 20px;
+            }
+
             section {
                 width: 480px;
                 border-left: 0.5px solid $text-muted;
+
+                @include responsive(small) {
+                    padding: 10px 0;
+                }
                 a {
                     display: block;
                     width: 95%;
@@ -337,9 +391,23 @@ body {
             padding: 20px 5% 140px 4%;
             gap: 20px;
 
+            @include responsive(small) {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 5% 0 4%;
+                gap: 2px;
+            }
+
             section:first-child {
                 width: 860px;
                 height: 540px;
+
+                @include responsive(small) {
+                    width: 100%;
+                    height: 100%;
+                    padding: 20px 0;
+                }
+
                 a {
                     display: inline-block;
                     background-image: url("../img/Comprar.jpg");
@@ -353,7 +421,7 @@ body {
                     @include transition(all, 0.2s, ease);
 
                     &:hover {
-                        transform: scale(1.08);
+                         transform: scale(1.08);
                     }
 
                     h2 {
@@ -387,6 +455,11 @@ body {
             section:last-child {
                 width: 860px;
                 height: 540px;
+
+                @include responsive(small) {
+                    width: 100%;
+                }
+
                 a {
                     display: inline-block;
                     background-image: url("../img/Alquiler.webp");

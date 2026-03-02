@@ -1,68 +1,8 @@
-<?php
-    // session_start();
+@extends('layouts.insertar')
 
-    // // Verificacion si es Administrador par poder acceder a esta pagina
-    // if(!isset($_SESSION["nombre"]) || $_SESSION["rol"] != 1) {
-    //     header("location:../panel.php");
-    //     die();
-    // }
-    
-    // include("../db/db.inc");//mysqli
+@section('title', 'Insertar Astros')
 
-    // $sql_sistemas = "SELECT id_sistema, nombre FROM sistemas_estelares ORDER BY nombre";
-    // $res_sistemas = mysqli_query($conn, $sql_sistemas);
-    // $sistemas = [];
-    // if ($res_sistemas) {
-    //     while ($row = mysqli_fetch_assoc($res_sistemas)) {
-    //         $sistemas[] = $row;
-    //     }
-    //     mysqli_free_result($res_sistemas);
-    // }
-
-    // if(isset($_POST["nombre"]) && !empty($_POST["nombre"])) 
-    // {
-    //     //Extraigo todos los valores necesarios para la insercion de la tabla
-    //     $nombre = htmlspecialchars(($_POST["nombre"]));
-    //     $descripcion = htmlspecialchars(($_POST["descripcion"]));
-    //     $masa = htmlspecialchars(($_POST["masa"]));
-    //     $distancia = intval((($_POST["distancia"])));
-    //     $precio = intval(($_POST["precio"]));
-    //     $id_sistema = htmlspecialchars(($_POST["id_sistema"]));
-
-    //     $sql_nombre = "SELECT * FROM planetas WHERE nombre='$nombre'";
-    //     $res = mysqli_query($conn, $sql_nombre);
-        
-    //     if (mysqli_num_rows($res) > 0)
-    //     {
-    //         header("location:gestion_planetas.php?pla=1");
-    //         die();
-    //     }
-    //     $sql = "INSERT INTO planetas(nombre, descripcion, masa, distancia, precio, id_sistema)
-    //     VALUES ('$nombre', '$descripcion', '$masa', '$distancia', '$precio', '$id_sistema');";
-        
-    //     if (mysqli_query($conn, $sql)) 
-    //     {
-    //         header("location:gestion_planetas.php?pla=0");
-    //     }
-    //     else 
-    //     {
-    //         header("location:gestion_planetas.php?pla=2");
-    //     }
-    //     die();
-    // }
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/estilo_ins.css">
-    <title>Document</title>
-</head>
-<body>
+@section('body')
     <!-- Boton para volver a la gestión -->
     <div class="card-header bg-primary d-flex align-items-center">
         <a href="./gestion_planetas.php" class="btn-back">
@@ -114,6 +54,4 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection
