@@ -10,10 +10,10 @@
 @endsection
 
 @section('principal')
-    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Pedidos</h2>
+    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Compra</h2>
 
     <div class="card shadow" style="max-width: 1500px; width: 100%;">
-        <div class="card-header bg-primary text-white">📋 Lista de Pedidos</div>
+        <div class="card-header bg-primary text-white">📋 Lista de Compras</div>
         <div class="card-body">
 
             <!-- Alertas de error  -->
@@ -38,50 +38,49 @@
             ?>
 
             <!-- Iserción de nuevos valores solo par administradores -->
-            <?php if ($rol == 1): ?>
+            @if ($rol == 1)
                 <div class="row mb-3 me-2 float-end">
-                    <a href="ins_ped_mysqli.php" class="btn btn-success">➕ Nuevo Pedido</a>
+                    <a href="{{ route('ins_com') }}" class="btn btn-success">➕ Nuevo Compra</a>
                 </div>
-            <?php endif; ?>
+            @endif
 
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
-                        <th>ID planeta</th>
-                        <th>ID cliente</th>
-                        <th>Total</th>
-                        <th>Descuento</th>
-                        <th>Fecha_pedido</th>
-                        <?php if ($rol == 1): ?>
+                        <th>ID Astro</th>
+                        <th>ID Usuario</th>
+                        <th>Fecha Compra</th>
+                        @if ($rol == 1)
                             <th>Acciones</th>
-                        <?php endif; ?>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($pedidos as $p): ?>
-                    <tr>
-                        <td><?= $p['id_pedido'] ?></td>
-                        <td><?= htmlspecialchars($p['id_planeta']) ?></td>
-                        <td><?= htmlspecialchars($p['id_cliente']) ?></td>
-                        <td><?= $p['total'] ?></td>
-                        <td><?= $p['descuento'] ?>%</td>
-                        <td><?= htmlspecialchars($p['fecha_pedido']) ?></td>
+                    @foreach ($compra as $c)
+                        <tr>
+                        <td>{{ $c->id }}</td>
+                        <td>{{ $c->id_astro }}</td>
+                        <td>{{ $c->id_usuario }}</td>
+                        <td>{{ $c->fechaClompra }}</td>
                         <td>
                             <!-- Solo disponble la edicion y eliminacion para administradores -->
-                            <?php if ($rol == 1): ?>
-                                <a href="edit_ped_mysqli.php?edit=<?= $p['id_pedido'] ?>"
+
+                            @if ($rol == 1)
+                                <a href="edit_usr_mysqli.php?edit={{ $c->id }}"
                                 class="btn btn-sm btn-warning">✏️</a>
 
                                 <button type="button"
                                         class="btn btn-danger"
-                                        onclick="eliminarPedido(<?= $p['id_pedido']; ?>)">
+                                        onclick="eliminarCompra('{{ $c->id }}')">
                                     🗑️
                                 </button>
-                            <?php endif; ?>
+                            @else
+                                <span class="text-muted">—</span>
+                            @endif
                         </td>
                     </tr>
-                    <?php endforeach; ?>
+                    @endforeach
                 </tbody>
             </table>
             <!-- Metodo de paginacion de maximo en 10 -->

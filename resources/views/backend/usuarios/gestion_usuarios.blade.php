@@ -47,10 +47,10 @@
                 <tbody>
                     @foreach ($usuarios as $usr)
                     <tr>
-                        <td>{{ $loop->iteration }}. {{ $usr->id }}</td>
-                        <td>{{ $loop->iteration }}. {{ $usr->nombre }}</td>
-                        <td>{{ $loop->iteration }}. {{ $usr->email }}</td>
-                        <td>{{ $loop->iteration }}. {{ $usr->rol }}</td>
+                        <td>{{ $usr->id }}</td>
+                        <td>{{ $usr->nombre }}</td>
+                        <td>{{ $usr->email }}</td>
+                        <td>{{ $usr->rol }}</td>
                         <td>
                             <!-- Solo disponble la edicion y eliminacion para administradores -->
 

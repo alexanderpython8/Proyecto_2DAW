@@ -5,7 +5,7 @@
 @section('body')
     <!-- Boton para volver a la gestión -->
     <div class="card-header bg-primary d-flex align-items-center">
-        <a href="./gestion_pedidos.php" class="btn-back">
+        <a href="{{ route('gestion_com') }}" class="btn-back">
             ⬅ Volver
         </a>
     </div>

@@ -5,7 +5,7 @@
 @section('body')
     <!-- Boton para volver a la gestión -->
     <div class="card-header bg-primary d-flex align-items-center">
-        <a href="./gestion_sistemas_estelares.php" class="btn-back">
+        <a href="{{ route('gestion_pag') }}" class="btn-back">
             ⬅ Volver
         </a>
     </div>

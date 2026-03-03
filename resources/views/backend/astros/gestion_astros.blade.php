@@ -10,10 +10,10 @@
 @endsection
 
 @section('principal')
-    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Planetas</h2>
+    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Astro</h2>
 
     <div class="card shadow" style="max-width: 1500px; width: 100%;">
-        <div class="card-header bg-primary text-white">📋 Lista de Planetas</div>
+        <div class="card-header bg-primary text-white">📋 Lista de Astros</div>
         <div class="card-body">
 
             <!-- Alertas de error  -->
@@ -32,72 +32,70 @@
             ?>
 
             <!-- Iserción de nuevos valores solo par administradores -->
-            <?php if ($rol == 1): ?>
+            @if ($rol == 1)
                 <div class="row mb-3 me-2 float-end">
-                    <a href="ins_pla_mysqli.php" class="btn btn-success">➕ Nuevo Planeta</a>
+                    <a href="{{ route('ins_ast') }}" class="btn btn-success">➕ Nuevo Astro</a>
                 </div>
-            <?php endif; ?>
+            @endif
 
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Masa</th>
-                        <th>Distancia</th>
-                        <th>Precio</th>
-                        <th>Vendido</th>
+                        <th>Tipo</th>
                         <th>Estado</th>
-                        <th>ID Sistema</th>
-                        <?php if ($rol == 1): ?>
+                        <th>Explotación</th>
+                        <th>Precio</th>
+                        @if ($rol == 1)
                             <th>Acciones</th>
-                        <?php endif; ?>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($planetas as $p): ?>
-                    <tr>
-                        <td><?= $p['id'] ?></td>
-                        <td><?= htmlspecialchars($p['nombre']) ?></td>
-                        <td style="width: 25%;"><?= htmlspecialchars($p['descripcion']) ?></td>
-                        <td><?= htmlspecialchars($p['masa']) ?></td>
-                        <td>
-                            <?= $p['distancia'] == 0 ? '0' : $p['distancia'] . ' millones de kilometros' ?>
-                        </td>
-                        <td><?= $p['precio'] ?></td>
-                        <td><?= $p['vendido'] == 'N' ? 'Libre' : 'Vendido'?></td>
-                        <td><?= $p['estado'] == 0 ? 'Descontinuado' : 'Activo'?></td>
-                        <td><?= $p['id_sistema'] ?></td>
-                        <td>
-                            <!-- Solo disponble la edicion y eliminacion para administradores -->
-                            <?php if ($rol == 1): ?>
-                                <a href="edit_pla_mysqli.php?edit=<?= $p['id'] ?>"
-                                class="btn btn-sm btn-warning">✏️</a>
+                    @foreach ($astros as $a)
+                        <tr>
+                            <td>{{ $a->id }}</td>
+                            <td>{{ $a->nombre }}</td>
+                            <td>
+                                @if ($a->tipo == 0)
+                                    Planetas
+                                @elseif ($a->tipo == 1)
+                                    Sol
+                                @else
+                                    Galaxia
+                                @endif
+                            </td>
+                            <td>
+                                @if ($a->estado == 0)
+                                    Libre
+                                @elseif ($a->estado == 1)
+                                    Comprado
+                                @else
+                                    Alquilado
+                                @endif
+                            </td>
+                            <td>{{ $a->explotacion }}%</td>
+                            <td>{{ $a->precio }}€</td>
+                            <td>
+                                <!-- Solo disponble la edicion y eliminacion para administradores -->
+                                @if ($rol == 1)
+                                    <a href="edit_usr_mysqli.php?edit={{ $a->id }}"
+                                    class="btn btn-sm btn-warning">✏️</a>
 
-                                <button type="button"
-                                        class="btn btn-danger"
-                                        onclick="eliminarPlaneta(<?= $p['id']; ?>)">
-                                    🗑️
-                                </button>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                                    <button type="button"
+                                            class="btn btn-danger"
+                                            onclick="eliminarAstro('{{ $a->id }}')">
+                                        🗑️
+                                    </button>
+                                @else
+                                    <span class="text-muted">—</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <!-- Metodo de paginacion de maximo en 10 -->
-            <nav aria-label="Paginacion">
-                <ul class="pagination justify-content-center mt-3">
-                    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-                    <li class="page-item<?php if ($i == $page) echo ' active'; ?>">
-                        <a class="page-link" href="gestion_planetas.php?page=<?= $i ?>">
-                        <?= $i ?>
-                        </a>
-                    </li>
-                    <?php endfor; ?>
-                </ul>
-            </nav>
         </div>
     </div>
 @endsection

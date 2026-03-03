@@ -33,52 +33,50 @@
             ?>
 
             <!-- Iserción de nuevos valores solo par administradores -->
-            <?php if ($rol == 1): ?>
+            @if ($rol == 1)
                 <div class="row mb-3 me-2 float-end">
-                    <a href="{{ route('ins_pag') }}" class="btn btn-success">➕ Nuevo Sistema</a>
+                    <a href="{{ route('ins_pag') }}" class="btn btn-success">➕ Nuevo Pago</a>
                 </div>
-            <?php endif; ?>
+            @endif
 
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Tipo Estrella</th>
-                        <th>Numero Planetas</th>
-                        <th>Distancia</th>
-                        <th>Descripcion</th>
-                        <?php if ($rol == 1): ?>
+                        <th>Alquiler</th>
+                        <th>Compra</th>
+                        <th>Monto</th>
+                        <th>Fecha Pago</th>
+                        @if ($rol == 1)
                             <th>Acciones</th>
-                        <?php endif; ?>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($sistemas_estelares as $s): ?>
-                    <tr>
-                        <td><?= $s['id_sistema'] ?></td>
-                        <td><?= htmlspecialchars($s['nombre']) ?></td>
-                        <td><?= htmlspecialchars($s['tipo_estrella']) ?></td>
-                        <td><?= $s['numero_planetas'] ?></td>
-                        <td>
-                            <?= $s['distancia'] == 0 ? '0' : $s['distancia'] . ' años luz' ?>
-                        </td>
-                        <td style="width: 35%;"><?= htmlspecialchars($s['descripcion']) ?></td>
-                        <td>
-                            <!-- Solo disponble la edicion y eliminacion para administradores -->
-                            <?php if ($rol == 1): ?>
-                                <a href="edit_sis_mysqli.php?edit=<?= $s['id_sistema'] ?>"
-                                class="btn btn-sm btn-warning">✏️</a>
+                    @foreach ($pago as $p)
+                        <tr>
+                            <td>{{ $p->id }}</td>
+                            <td>{{ $p->id_alquiler }}</td>
+                            <td>{{ $p->id_compra }}</td>
+                            <td>{{ $p->monto }}€</td>
+                            <td>{{ $p->fechaPago }}</td>
+                            <td>
+                                <!-- Solo disponble la edicion y eliminacion para administradores -->
+                                @if ($rol == 1)
+                                    <a href="edit_usr_mysqli.php?edit={{ $p->id }}"
+                                    class="btn btn-sm btn-warning">✏️</a>
 
-                                <button type="button"
-                                        class="btn btn-danger"
-                                        onclick="eliminarSistema(<?= $s['id_sistema']; ?>)">
-                                    🗑️
-                                </button>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                                    <button type="button"
+                                            class="btn btn-danger"
+                                            onclick="eliminarPago('{{ $p->id }}')">
+                                        🗑️
+                                    </button>
+                                @else
+                                    <span class="text-muted">—</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
             <!-- Metodo de paginacion de maximo en 10 -->

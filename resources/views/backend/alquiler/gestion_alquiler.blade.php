@@ -10,10 +10,10 @@
 @endsection
 
 @section('principal')
-    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Clientes</h2>
+    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Alquiler</h2>
 
     <div class="card shadow" style="max-width: 1500px; width: 100%;">
-        <div class="card-header bg-primary text-white">📋 Lista de Clientes</div>
+        <div class="card-header bg-primary text-white">📋 Lista de Alquileres</div>
         <div class="card-body">
 
             <!-- Alertas de error  -->
@@ -31,67 +31,51 @@
                 // }
             ?>
 
-            <div class="row mb-3 me-2 float-end">
-                <a href="ins_cli_mysqli.php" class="btn btn-success">➕ Nuevo Cliente</a>
-            </div>
+            @if ($rol == 1)
+                <div class="row mb-3 me-2 float-end">
+                    <a href="{{ route('ins_alq') }}" class="btn btn-success">➕ Nuevo Alquiler</a>
+                </div>
+            @endif
 
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Email</th>
-                        <th>Género</th>
-                        <th>Dirección</th>
-                        <th>Código Postal</th>
-                        <th>Población</th>
-                        <th>Provincia</th>
-                        <th>Acciones</th>
+                        <th>Astro</th>
+                        <th>Usuario</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
+                        @if ($rol == 1)
+                            <th>Acciones</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($clientes as $c): ?>
-                    <tr>
-                        <td><?= $c['id'] ?></td>
-                        <td><?= htmlspecialchars($c['nombre']) ?></td>
-                        <td><?= htmlspecialchars($c['apellidos']) ?></td>
-                        <td><?= htmlspecialchars($c['email']) ?></td>
-                        <td><?= $c['genero'] ?></td>
-                        <td><?= htmlspecialchars($c['direccion']) ?></td>
-                        <td><?= $c['codpostal'] ?></td>
-                        <td><?= htmlspecialchars($c['poblacion']) ?></td>
-                        <td><?= htmlspecialchars($c['provincia']) ?></td>
-                        <td>
-                            <?php if ($rol == 1): ?>
-                                <a href="edit_cli_mysqli.php?edit=<?= $c['id'] ?>"
-                                class="btn btn-sm btn-warning">✏️</a>
+                    @foreach ($alquiler as $alq)
+                        <tr>
+                            <td>{{ $alq->id }}</td>
+                            <td>{{ $alq->id_astro }}</td>
+                            <td>{{ $alq->id_usuario }}</td>
+                            <td>{{ $alq->fechaInicio }}</td>
+                            <td>{{ $alq->fechaFin }}</td>
+                            <td>
+                                @if ($rol == 1)
+                                    <a href="edit_usr_mysqli.php?edit={{ $alq->id }}"
+                                    class="btn btn-sm btn-warning">✏️</a>
 
-                                <button type="button"
-                                        class="btn btn-danger"
-                                        onclick="eliminarCliente(<?= $c['id']; ?>)">
-                                    🗑️
-                                </button>
-                            <?php else: ?>
-                                <span class="text-muted">—</span>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                                    <button type="button"
+                                            class="btn btn-danger"
+                                            onclick="eliminarAlquiler('{{ $alq->id }}')">
+                                        🗑️
+                                    </button>
+                                @else
+                                    <span class="text-muted">—</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            <!-- Metodo de paginacion de maximo en 10 -->
-            <nav aria-label="Paginacion">
-                <ul class="pagination justify-content-center mt-3">
-                    <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-                        <li class="page-item<?php if ($i == $page) echo ' active'; ?>">
-                            <a class="page-link" href="gestion_clientes.php?page=<?= $i ?>">
-                                <?= $i ?>
-                            </a>
-                        </li>
-                    <?php endfor; ?>
-                </ul>
-            </nav>
         </div>
     </div>
 @endsection
