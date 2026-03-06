@@ -1,0 +1,19 @@
+body
+{
+    background-image: url("../img/moon-2048727_1280.jpg");
+    background-size: cover;
+}
+h1 {
+  font-size: 2cm;
+  font-weight: 800;
+  color: rgb(73, 76, 179);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-align: center;
+  padding-bottom: 40px;
+}
+label {
+    color: rgb(150, 132, 166);
+    font-size: 22px;
+    padding-top: 15px;
+}
