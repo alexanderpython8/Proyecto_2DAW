@@ -1,0 +1,140 @@
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;   
+}
+
+aside {
+    background: linear-gradient(180deg, #12172b, #0b0f1a);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.6);
+}
+aside h5 {
+    color: #eaeaf0;
+}
+
+aside small {
+    color: #a0a3b1;
+}
+
+.list-group-item {
+    background-color: transparent;
+    color: #eaeaf0;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 6px;
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(58, 124, 255, 0.15);
+    color: #3a7cff;
+    transform: translateX(4px);
+}
+
+.list-group-item.active {
+    background: linear-gradient(90deg, #3a7cff, #7b4ae2);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+h2 {
+    color: #eaeaf0;
+    text-shadow: 0 0 8px rgba(123, 74, 226, 0.6);
+}
+
+.card {
+    background-color: #12172b;
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+.card-header {
+    background: linear-gradient(90deg, #3a7cff, #7b4ae2);
+    color: white;
+    font-weight: 600;
+    border-radius: 18px 18px 0 0;
+}
+
+.table {
+    color: #eaeaf0;
+}
+
+.table thead {
+    background-color: #0b0f1a;
+    color: #3a7cff;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(68, 148, 52, 0.15);
+}
+
+.btn-success {
+    background: linear-gradient(90deg, #2ee6a6, #3a7cff);
+    border: none;
+    color: #0b0f1a;
+    font-weight: 600;
+}
+
+.btn-success:hover {
+    opacity: 0.9;
+}
+
+.btn-warning {
+    background-color: #ff9f1c;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #e63946;
+    border: none;
+}
+
+.alert-success {
+    background-color: rgba(46, 230, 166, 0.15);
+    color: #2ee6a6;
+    border: none;
+}
+
+.alert-warning {
+    background-color: rgba(255, 159, 28, 0.15);
+    color: #ff9f1c;
+    border: none;
+}
+
+.alert-danger {
+    background-color: rgba(230, 57, 70, 0.15);
+    color: #e63946;
+    border: none;
+}
+
+.modal-content {
+    background-color: #12172b;
+    color: #eaeaf0;
+    border-radius: 16px;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+img.rounded-circle {
+    box-shadow: 0 0 12px rgba(58, 124, 255, 0.6);
+}
+
+.btn-back {
+    padding: 8px 16px;
+    color: #E8F4FF;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+}
