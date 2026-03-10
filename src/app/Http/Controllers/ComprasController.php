@@ -77,7 +77,7 @@ class ComprasController extends Controller
 
     public function compras()
     {
-        $astros = Astros::all();
+        $astros = Astros::where('estado', 0)->orderBy('nombre', 'asc')->get();
         return view('compras', compact('astros'));
     }
 }
