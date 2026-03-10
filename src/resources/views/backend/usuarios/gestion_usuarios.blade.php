@@ -41,7 +41,15 @@
                         <td>{{ $usr->id }}</td>
                         <td>{{ $usr->nombre }}</td>
                         <td>{{ $usr->email }}</td>
-                        <td>{{ $usr->rol }}</td>
+                        <td>
+                            @if ($usr->rol == 0)
+                                Usuario
+                            @elseif ($usr->rol == 1)
+                                Administrador
+                            @else
+                                Suspendida
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('edit_usr', $usr->id) }}"
                             class="btn btn-sm btn-warning">✏️</a>
@@ -49,8 +57,8 @@
                             <form action="{{ route('drop_usr', $usr->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger">
-                                    🗑️
+                                <button type="submit" class="btn btn-danger">
+                                    ⛔
                                 </button>
                             </form>
                         </td>
@@ -58,7 +66,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <!-- Metodo de paginacion de maximo en 10 -->
         </div>
     </div>
 @endsection

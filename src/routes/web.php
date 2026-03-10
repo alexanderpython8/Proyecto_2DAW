@@ -63,10 +63,6 @@ Route::delete('/usuarios/delete/{usuarios}', [UsuariosController::class, 'delete
 
 // Backed enlaces Alquiler #########################################################################################
 
-Route::get('/edit_alquiler', function () {
-    return view('backend.alquiler.edit_alq_mysqli');
-})->name('edit_alq');
-
 Route::get('/gestion_alquiler', function () {
     return view('backend.alquiler.gestion_alquiler');
 })->name('gestion_alq');
@@ -105,10 +101,6 @@ Route::delete('/astros/delete/{astros}', [AstrosController::class, 'delete'])->n
 
 // Backed enlaces Compra #########################################################################################
 
-Route::get('/edit_compra', function () {
-    return view('backend.compra.edit_com_mysqli');
-})->name('edit_com');
-
 Route::get('/gestion_compra', function () {
     return view('backend.compra.gestion_compra');
 })->name('gestion_com');
@@ -126,17 +118,9 @@ Route::delete('/compra/delete/{compras}', [ComprasController::class, 'delete'])-
 
 // Backed enlaces Pago #########################################################################################
 
-Route::get('/edit_pago', function () {
-    return view('backend.pago.edit_alq_mysqli');
-})->name('edit_pag');
-
 Route::get('/gestion_pago', function () {
     return view('backend.pago.gestion_pago');
 })->name('gestion_pag');
-
-Route::get('/ins_pago', function () {
-    return view('backend.pago.ins_pag_mysqli');
-})->name('ins_pag');
 
 Route::get('/gestion_pago', [PagosController::class, 'All'])->name('gestion_pag');
 Route::get('/ins_pago', [ComprasController::class, 'crear'])->name('ins_pag');

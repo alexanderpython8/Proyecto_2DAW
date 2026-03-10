@@ -16,6 +16,12 @@
         <div class="card-header bg-primary text-white">📋 Lista de Alquileres</div>
         <div class="card-body">
 
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <p>{{session('success')}}</p>
+                </div>
+            @endif
+
             <div class="row mb-3 me-2 float-end">
                 <a href="{{ route('ins_alq') }}" class="btn btn-success">➕ Nuevo Alquiler</a>
             </div>
@@ -37,16 +43,13 @@
                             <td>{{ $alq->id }}</td>
                             <td>{{ $alq->astros_id }} - {{ $astros->find($alq->astros_id)->nombre }}</td>
                             <td>{{ $alq->usuarios_id }} - {{ $usuarios->find($alq->usuarios_id)->nombre }}</td>
-                            <td>{{ $alq->fechaInicio }}</td>
-                            <td>{{ $alq->fechaFin }}</td>
+                            <td>{{ \Carbon\Carbon::parse($alq->fechaInicio)->toDateString() }}</td>
+                            <td>{{ \Carbon\Carbon::parse($alq->fechaFin)->toDateString() }}</td>
                             <td>
-                                <a href="{{ route('edit_ast', $alq->id) }}"
-                                class="btn btn-sm btn-warning">✏️</a>
-
-                                <form action="{{ route('drop_ast', $alq->id) }}" method="POST">
+                                <form action="{{ route('drop_alq', $alq->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-danger">
+                                    <button type="submit" class="btn btn-danger">
                                         🗑️
                                     </button>
                                 </form>

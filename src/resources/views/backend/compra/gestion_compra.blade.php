@@ -16,6 +16,12 @@
         <div class="card-header bg-primary text-white">📋 Lista de Compras</div>
         <div class="card-body">
 
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <p>{{session('success')}}</p>
+                </div>
+            @endif
+
             <!-- Iserción de nuevos valores solo par administradores -->
             <div class="row mb-3 me-2 float-end">
                 <a href="{{ route('ins_com') }}" class="btn btn-success">➕ Nuevo Compra</a>
@@ -37,15 +43,12 @@
                         <td>{{ $com->id }}</td>
                         <td>{{ $com->astros_id }} - {{ $astros->find($com->astros_id)->nombre }}</td>
                         <td>{{ $com->usuarios_id }} - {{ $usuarios->find($com->usuarios_id)->nombre }}</td>
-                        <td>{{ $com->fechaCompra }}</td>
+                        <td>{{ \Carbon\Carbon::parse($com->fechaCompra)->toDateString() }}</td>
                         <td>
-                            <a href="{{ route('edit_com', $com->id) }}"
-                            class="btn btn-sm btn-warning">✏️</a>
-
                             <form action="{{ route('drop_com', $com->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger">
+                                <button type="submit" class="btn btn-danger">
                                     🗑️
                                 </button>
                             </form>

@@ -19,7 +19,6 @@
                     <div class="row">
                         @csrf
 
-                        {{-- Select Clientes --}}
                         <div class="col-md-6 mt-3">
                             <label for="usuarios_id" class="form-label">Clientes (id - nombre)</label>
                             <select name="usuarios_id" id="usuarios_id"
@@ -41,7 +40,6 @@
                             @enderror
                         </div>
 
-                        {{-- Select Astros --}}
                         <div class="col-md-6 mt-3">
                             <label for="astros_id" class="form-label">Astros disponibles (id - nombre)</label>
                             <select name="astros_id" id="astros_id"

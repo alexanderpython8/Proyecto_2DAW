@@ -50,7 +50,7 @@ class UsuariosController extends Controller
     public function delete($id)
     {
         $usuarios = Usuarios::findOrFail($id);
-        $usuarios->delete();
-        return redirect()->route('gestion_usr')->with('success', 'Usuario eliminado correctamente');;
+        $usuarios->update(['rol' => 3]);
+        return redirect()->route('gestion_usr')->with('success', 'Usuario suspendido correctamente');;
     }
 }

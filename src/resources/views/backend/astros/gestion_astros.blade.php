@@ -16,16 +16,15 @@
         <div class="card-header bg-primary text-white">📋 Lista de Astros</div>
         <div class="card-body">
 
-            <!-- Iserción de nuevos valores solo par administradores -->
-            <div class="row mb-3 me-2 float-end">
-                <a href="{{ route('ins_ast') }}" class="btn btn-success">➕ Nuevo Astro</a>
-            </div>
-
             @if (session('success'))
                 <div class="alert alert-success">
                     <p>{{session('success')}}</p>
                 </div>
             @endif
+
+            <div class="row mb-3 me-2 float-end">
+                <a href="{{ route('ins_ast') }}" class="btn btn-success">➕ Nuevo Astro</a>
+            </div>
 
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">
@@ -58,8 +57,10 @@
                                     Libre
                                 @elseif ($ast->estado == 1)
                                     Comprado
-                                @else
+                                @elseif ($ast->estado == 2)
                                     Alquilado
+                                @else
+                                    Descatalogado
                                 @endif
                             </td>
                             <td>{{ $ast->explotacion }}%</td>
@@ -71,8 +72,8 @@
                                 <form action="{{ route('drop_ast', $ast->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-danger">
-                                        🗑️
+                                    <button type="submit" class="btn btn-danger">
+                                        ⛔
                                     </button>
                                 </form>
                             </td>

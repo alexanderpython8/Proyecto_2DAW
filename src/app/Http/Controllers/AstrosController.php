@@ -55,7 +55,7 @@ class AstrosController extends Controller
     public function delete($id)
     {
         $astros = Astros::findOrFail($id);
-        $astros->delete();
-        return redirect()->route('gestion_ast')->with('success', 'Astro eliminado correctamente');
+        $astros->update(['estado' => 4]);
+        return redirect()->route('gestion_ast')->with('success', 'Astro descatalogado correctamente');
     }
 }

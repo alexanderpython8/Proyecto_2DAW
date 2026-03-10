@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Compras;
 use App\Models\Astros;
 use App\Models\Usuarios;
+use App\Models\Pagos;
 use App\Http\Requests\ComprasRequest;
 use Illuminate\View\View;
 
@@ -21,7 +22,7 @@ class ComprasController extends Controller
 
     public function crear() : View
     {
-        $usuarios = Usuarios::orderBy('nombre', 'asc')->get();
+        $usuarios = Usuarios::where('rol', '!=', 3)->orderBy('nombre', 'asc')->get();
         $astros = Astros::where('estado', 0)->orderBy('nombre', 'asc')->get();
 
         return view('backend.compra.ins_com_mysqli', compact('usuarios', 'astros'));
@@ -29,13 +30,22 @@ class ComprasController extends Controller
 
     public function save(ComprasRequest $request)
     {
+        $astro = Astros::findOrFail($request->input('astros_id'));
+
         $compras = new Compras();
         $compras->astros_id = $request->input('astros_id');
         $compras->usuarios_id = $request->input('usuarios_id');
         $compras->save();
 
-        Astros::where('id', $request->input('astros_id'))
-          ->update(['estado' => 1]);
+        $astro->update(['estado' => 1]);
+        
+        Pagos::create([
+            'compras_id' => $compras->id,
+            'astros_usuarios_id' => null,
+            'tipo' => 'compra',
+            'monto' => $astro->precio,
+            'dias_alquiler' => null,
+        ]);
 
         return redirect()->route('gestion_com')->with('success', 'Compra actualizado correctamente');
     }
