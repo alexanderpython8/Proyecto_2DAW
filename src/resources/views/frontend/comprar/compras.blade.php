@@ -175,7 +175,6 @@
                 </ul>
                 <ul>
                     <h2>Acerca de nosotros</h2>
-                    <li></li>
                     <li><p><a href="#">Calle imaginaria</a></p></li>
                     <li><p><a href="#">Información</a></p></li>
                 </ul>

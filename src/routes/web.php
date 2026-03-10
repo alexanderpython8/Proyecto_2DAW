@@ -76,6 +76,11 @@ Route::get('/ins_alquiler', function () {
 })->name('ins_alq');
 
 Route::get('/gestion_alquiler', [AstrosUsuariosController::class, 'All'])->name('gestion_alq');
+Route::get('/ins_alquiler', [AstrosUsuariosController::class, 'crear'])->name('ins_alq');
+Route::post('/alquiler/save', [AstrosUsuariosController::class, 'save'])->name('save_alq');
+Route::get('/edit_alquiler/{astros_usuarios}', [AstrosUsuariosController::class, 'editar'])->name('edit_alq');
+Route::put('/alquileres/update/{astros_usuarios}', [AstrosUsuariosController::class, 'update'])->name('update_alq');
+Route::delete('/alquileres/delete/{astros_usuarios}', [AstrosUsuariosController::class, 'delete'])->name('drop_alq');
 
 // Backed enlaces Astros #########################################################################################
 
@@ -113,6 +118,11 @@ Route::get('/ins_compra', function () {
 })->name('ins_com');
 
 Route::get('/gestion_compra', [ComprasController::class, 'All'])->name('gestion_com');
+Route::get('/ins_compra', [ComprasController::class, 'crear'])->name('ins_com');
+Route::post('/compra/save', [ComprasController::class, 'save'])->name('save_com');
+Route::get('/edit_compra/{compras}', [ComprasController::class, 'editar'])->name('edit_com');
+Route::put('/compra/update/{compras}', [ComprasController::class, 'update'])->name('update_com');
+Route::delete('/compra/delete/{compras}', [ComprasController::class, 'delete'])->name('drop_com');
 
 // Backed enlaces Pago #########################################################################################
 
@@ -129,3 +139,8 @@ Route::get('/ins_pago', function () {
 })->name('ins_pag');
 
 Route::get('/gestion_pago', [PagosController::class, 'All'])->name('gestion_pag');
+Route::get('/ins_compra', [ComprasController::class, 'crear'])->name('ins_pag');
+Route::post('/pago/save', [ComprasController::class, 'save'])->name('save_pag');
+Route::get('/edit_cpago/{pagos}', [ComprasController::class, 'editar'])->name('edit_pag');
+Route::put('/pago/update/{pagos}', [ComprasController::class, 'update'])->name('update_pag');
+Route::delete('/pago/delete/{pagos}', [ComprasController::class, 'delete'])->name('drop_pag');

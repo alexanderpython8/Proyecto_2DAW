@@ -20,22 +20,22 @@
                         @csrf
 
                         <div class="col-md-6 mt-3">
-                            <label for="id_cliente" class="form-label">Cliente (id - nombre)</label>
-                            <select name="id_cliente" id="id_cliente" 
-                                class="form-select @error('id_cliente') is-invalid @enderror" required>
+                            <label for="usuarios_id" class="form-label">Clientes (id - nombre)</label>
+                            <select name="usuarios_id" id="usuarios_id" 
+                                class="form-select @error('usuarios_id') is-invalid @enderror" required>
                                 <option value="" selected disabled>Selecciona un cliente</option>
-                                @if (!empty($clientes))
-                                    @foreach ($clientes as $c)
-                                        <option value="{{ intval($c['id']) }}"
-                                            {{ old('id_cliente') == $c['id'] ? 'selected' : '' }}>
-                                            {{ $c['id'] . ' - ' . $c['nombre'] }}
+                                @if (!empty($usuarios))
+                                    @foreach ($usuarios as $usr)
+                                        <option value="{{ intval($usr['id']) }}"
+                                            {{ old('usuarios_id') == $usr['id'] ? 'selected' : '' }}>
+                                            {{ $usr['id'] . ' - ' . $usr['nombre'] }}
                                         </option>
                                     @endforeach
                                 @else
                                     <option value="" disabled>No hay clientes disponibles</option>
                                 @endif
                             </select>
-                            @error('id_cliente')
+                            @error('usuarios_id')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}
                                 </div>
@@ -43,55 +43,29 @@
                         </div>
 
                         <div class="col-md-6 mt-3">
-                            <label for="id_planeta" class="form-label">Planeta (id - nombre)</label>
-                            <select name="id_planeta" id="id_planeta" 
-                                class="form-select @error('id_planeta') is-invalid @enderror" required>
-                                <option value="" selected disabled>Selecciona un planeta</option>
-                                @if (!empty($planetas))
-                                    @foreach ($planetas as $p)
-                                        <option value="{{ intval($p['id']) }}"
-                                            {{ old('id_planeta') == $p['id'] ? 'selected' : '' }}>
-                                            {{ $p['id'] . ' - ' . $p['nombre'] }}
+                            <label for="astros_id" class="form-label">Astros (id - nombre)</label>
+                            <select name="astros_id" id="astros_id" 
+                                class="form-select @error('astros_id') is-invalid @enderror" required>
+                                <option value="" selected disabled>Selecciona un astro</option>
+                                @if (!empty($astros))
+                                    @foreach ($astros as $ast)
+                                        <option value="{{ intval($ast['id']) }}"
+                                            {{ old('astros_id') == $ast['id'] ? 'selected' : '' }}>
+                                            {{ $ast['id'] . ' - ' . $ast['nombre'] }}
                                         </option>
                                     @endforeach
                                 @else
-                                    <option value="" disabled>No hay planetas disponibles</option>
+                                    <option value="" disabled>No hay astros disponibles</option>
                                 @endif
                             </select>
-                            @error('id_planeta')
-                                <div class="invalid-feedback d-block">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-6 mt-3">
-                            <label for="total" class="form-label">Precio</label>
-                            <input type="number" 
-                                class="form-control @error('total') is-invalid @enderror" 
-                                id="total" name="total" step="1" 
-                                value="{{ old('total') }}" required>
-                            @error('total')
-                                <div class="invalid-feedback d-block">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-6 mt-3">
-                            <label for="descuento" class="form-label">Descuento</label>
-                            <input type="number" 
-                                class="form-control @error('descuento') is-invalid @enderror" 
-                                id="descuento" name="descuento" step="1" 
-                                value="{{ old('descuento') }}" required>
-                            @error('descuento')
+                            @error('astros_id')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <!-- Confirmo para agregar el nuevo pedido -->
-                        <button type="submit" class="btn btn-success mt-5">Guardar pedido</button>
+                        <button type="submit" class="btn btn-success mt-5">Guardar compra</button>
                     </div>
                 </form>
             </div>
