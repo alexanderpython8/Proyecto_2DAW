@@ -11,13 +11,12 @@
 @endsection
 
 @section('principal')
-    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Sistemas</h2>
+    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Pago</h2>
 
     <div class="card shadow" style="max-width: 1500px; width: 100%;">
-        <div class="card-header bg-primary text-white">📋 Lista de Sistemas</div>
+        <div class="card-header bg-primary text-white">📋 Lista de Pago</div>
         <div class="card-body">
 
-            <!-- Iserción de nuevos valores solo par administradores -->
             <div class="row mb-3 me-2 float-end">
                 <a href="{{ route('ins_pag') }}" class="btn btn-success">➕ Nuevo Pago</a>
             </div>
@@ -33,6 +32,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     @foreach ($pagos as $p)
                         <tr>

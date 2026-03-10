@@ -32,9 +32,9 @@ class AstrosUsuariosRequest extends FormRequest
 public function messages(): array
 {
     return [
-        'usuarios_id.required' => 'El cliente es obligatorio'
+        'usuarios_id.required' => 'El cliente es obligatorio',
 
-        'astros_id.required'   => 'El astro es obligatorio'
+        'astros_id.required'   => 'El astro es obligatorio',
 
         'fechaInicio.required' => 'La fecha de inicio es obligatoria',
         'fechaInicio.date'     => 'La fecha de inicio debe ser una fecha válida',

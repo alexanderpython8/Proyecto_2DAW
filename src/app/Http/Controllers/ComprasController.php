@@ -34,6 +34,9 @@ class ComprasController extends Controller
         $compras->usuarios_id = $request->input('usuarios_id');
         $compras->save();
 
+        Astros::where('id', $request->input('astros_id'))
+          ->update(['estado' => 1]);
+
         return redirect()->route('gestion_com')->with('success', 'Compra actualizado correctamente');
     }
 
@@ -54,6 +57,10 @@ class ComprasController extends Controller
     public function delete($id)
     {
         $compras = Compras::findOrFail($id);
+
+        Astros::where('id', $compras->astros_id)
+          ->update(['estado' => 0]);
+        
         $compras->delete();
         return redirect()->route('gestion_com')->with('success', 'Compra eliminado correctamente');
     }
