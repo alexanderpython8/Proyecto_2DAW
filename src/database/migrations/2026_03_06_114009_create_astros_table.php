@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('caracteristicas', 200);
             $table->Integer('explotacion')->default(100);
             $table->Integer('precio');
-            $table->string('img', 255)->default("default.png");
+            $table->string('img', 255)->default("04Yzc39Ls3CjenAJyoppD8N1HZn9qi1wjOupMG27.jpg");
             $table->timestamps();
         });
     }

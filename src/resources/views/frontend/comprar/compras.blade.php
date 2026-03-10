@@ -23,7 +23,14 @@
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="{{ route('login') }}">Iniciar sesión</a>
+                    @auth
+                        <form action="{{ route('logout') }}" method="POST" style="display:inline">
+                            @csrf
+                            <button type="submit">Cerrar sesion</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}">Iniciar sesion</a>
+                    @endauth
                 </li>
                 <li>
                     <button><img src="{{ asset('assets/img/buscador.png') }}" alt="Buscador"></button>
@@ -35,105 +42,19 @@
     <main>
         <article>
             <ul>
+                @foreach($astros as $astro)
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('storage/astros/rYjyIt3C861Nln0sSsffG00rhOKwkK5zsKcRiJJy.jpg') }}" alt="Astro">
+                            <img src="{{ asset('storage/astros/' . $astro->img) }}" alt="{{ $astro->nombre }}">
                         </div>
                         <div>
-                            <h3>Júpiter</h3>
-                            <p>Protector terrestre</p>
+                            <h3>{{ $astro->nombre }}</h3>
+                            <p>{{ $astro->caracteristicas }}</p>
                         </div>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/Gemini_Generated_Image_bwq4xobwq4xobwq4.png') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Alfa Centauri A</h3>
-                            <p>Sistema estelar</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/urano.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Urano</h3>
-                            <p>Atmósfera gélida</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/planetas.jpeg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Plutón</h3>
-                            <p>Enano terrestre</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/mercurio.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Mercurio</h3>
-                            <p>Sin atmósfera</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/agujeronegro.webp') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Cygnus X-1</h3>
-                            <p>Densidad infinita</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/neptuno.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Neptuno</h3>
-                            <p>Gigante helado</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/saturno.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Saturno</h3>
-                            <p>Anillos visibles</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/proximacentaurib.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Próxima Centauri B</h3>
-                            <p>Posiblemente rocoso</p>
-                        </div>
-                    </a>
-                </li>
+                @endforeach
             </ul>
         </article>
         <article>

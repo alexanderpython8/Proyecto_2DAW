@@ -23,7 +23,14 @@
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="{{ route('login') }}">Iniciar sesión</a>
+                    @auth
+                        <form action="{{ route('logout') }}" method="POST" style="display:inline">
+                            @csrf
+                            <button type="submit">Cerrar sesion</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}">Iniciar sesion</a>
+                    @endauth
                 </li>
                 <li>
                     <button><img src="{{ asset('assets/img/buscador.png') }}" alt="Buscador"></button>

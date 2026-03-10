@@ -161,6 +161,27 @@ body {
                         }
                     }
 
+                    form {
+                        text-decoration: none;
+                        text-align: center;
+                        display: initial;
+                        align-items: center;
+                        color: $text-primary;
+                        font-size: 15px;
+                        letter-spacing: 1.5px;
+                        padding-left: 60px;
+                        text-align: center;
+
+                        &:hover {
+                            color: $link-hover;
+                        }
+
+                        @include responsive(small) {
+                            padding: 11px 0;
+                            font-size: 16px;
+                        }
+                    }
+
                     div {
                         position: relative;
 

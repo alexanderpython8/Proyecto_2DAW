@@ -74,4 +74,10 @@ class ComprasController extends Controller
         $compras->delete();
         return redirect()->route('gestion_com')->with('success', 'Compra eliminado correctamente');
     }
+
+    public function compras()
+    {
+        $astros = Astros::all();
+        return view('compras', compact('astros'));
+    }
 }

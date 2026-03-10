@@ -108,6 +108,24 @@ body header > div:first-child > ul li:nth-child(2) a:hover {
     font-size: 16px;
   }
 }
+body header > div:first-child > ul li:nth-child(2) form {
+  text-decoration: none;
+  display: initial;
+  align-items: center;
+  color: #E6E8EE;
+  font-size: 15px;
+  padding-left: 60px;
+  text-align: center;
+}
+body header > div:first-child > ul li:nth-child(2) form:hover {
+  color: #5A8DEE;
+}
+@media (max-width: 800px) {
+  body header > div:first-child > ul li:nth-child(2) form {
+    padding: 11px 0;
+    font-size: 16px;
+  }
+}
 body header > div:first-child > ul li:nth-child(2) div {
   position: relative;
 }

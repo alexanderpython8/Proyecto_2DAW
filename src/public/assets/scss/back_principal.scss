@@ -163,6 +163,24 @@ body {
                         }
                     }
 
+                    form {
+                        text-decoration: none;
+                        display: initial;
+                        align-items: center;
+                        color: $text-light;
+                        font-size: 15px;
+                        padding-left: 60px;
+                        text-align: center;
+
+                        &:hover {
+                            color: $accent-color;
+                        }
+                        @include responsive(small) {
+                            padding: 11px 0;
+                            font-size: 16px;
+                        }
+                    }
+
                     div {
                         position: relative;
                         a

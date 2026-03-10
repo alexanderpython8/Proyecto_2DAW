@@ -21,7 +21,7 @@ class AstrosRequest extends FormRequest
      */
     public function rules(): array
     {
-        $astrosId = $this->route('astros')
+        $astrosId = $this->route('astros');
         return [
             'nombre' => 'required|string|max:255|unique:astros,nombre,' . $astrosId,
             'tipo' => 'required|in:0,1,2',
