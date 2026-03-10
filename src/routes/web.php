@@ -139,7 +139,7 @@ Route::get('/ins_pago', function () {
 })->name('ins_pag');
 
 Route::get('/gestion_pago', [PagosController::class, 'All'])->name('gestion_pag');
-Route::get('/ins_compra', [ComprasController::class, 'crear'])->name('ins_pag');
+Route::get('/ins_pago', [ComprasController::class, 'crear'])->name('ins_pag');
 Route::post('/pago/save', [ComprasController::class, 'save'])->name('save_pag');
 Route::get('/edit_cpago/{pagos}', [ComprasController::class, 'editar'])->name('edit_pag');
 Route::put('/pago/update/{pagos}', [ComprasController::class, 'update'])->name('update_pag');

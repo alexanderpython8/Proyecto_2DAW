@@ -21,13 +21,14 @@ class AstrosRequest extends FormRequest
      */
     public function rules(): array
     {
+        $astrosId = $this->route('astros')
         return [
-            'nombre' => 'required|string|max:255|unique:astros,nombre,' . $this->route('astros'),
+            'nombre' => 'required|string|max:255|unique:astros,nombre,' . $astrosId,
             'tipo' => 'required|in:0,1,2',
             'historia' => 'required|string|max:1000',
             'caracteristicas' => 'required|string|max:1000',
             'precio' => 'required|numeric|min:0',
-            'img' => $this->route('astros') ? 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' : 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'img' => $astrosId ? 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' : 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 

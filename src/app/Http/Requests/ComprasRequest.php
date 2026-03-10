@@ -11,7 +11,7 @@ class ComprasRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,20 @@ class ComprasRequest extends FormRequest
      */
     public function rules(): array
     {
+        $compraId = $this->route('compras');
+
         return [
-            //
+            'usuarios_id' => 'required|integer|exists:usuarios,id',
+            'astros_id'   => 'required|integer|exists:astros,id',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'usuarios_id.required' => 'El cliente es obligatorio',
+
+            'astros_id.required'   => 'El astro es obligatorio',
         ];
     }
 }

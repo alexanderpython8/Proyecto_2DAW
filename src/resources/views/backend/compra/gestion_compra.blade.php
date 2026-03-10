@@ -35,8 +35,8 @@
                     @foreach ($compras as $com)
                         <tr>
                         <td>{{ $com->id }}</td>
-                        <td>{{ $com->astros_id }}</td>
-                        <td>{{ $com->usuarios_id }}</td>
+                        <td>{{ $com->astros_id }} - {{ $astros->find($com->astros_id)->nombre }}</td>
+                        <td>{{ $com->usuarios_id }} - {{ $usuarios->find($com->usuarios_id)->nombre }}</td>
                         <td>{{ $com->fechaCompra }}</td>
                         <td>
                             <a href="{{ route('edit_com', $com->id) }}"

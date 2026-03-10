@@ -14,7 +14,9 @@ class ComprasController extends Controller
     public function All() : View
     {
         $compras = Compras::orderBy('id', 'asc')->get();
-        return view('backend.compra.gestion_compra', compact('compras'));
+        $usuarios = Usuarios::orderBy('id', 'asc')->get();
+        $astros = Astros::orderBy('id', 'asc')->get();
+        return view('backend.compra.gestion_compra', compact('compras', 'usuarios', 'astros'));
     }
 
     public function crear() : View
@@ -22,7 +24,7 @@ class ComprasController extends Controller
         $usuarios = Usuarios::orderBy('nombre', 'asc')->get();
         $astros = Astros::where('estado', 0)->orderBy('nombre', 'asc')->get();
 
-        return view('backend.comprar.ins_com_mysqli', compact('usuarios', 'astros'));
+        return view('backend.compra.ins_com_mysqli', compact('usuarios', 'astros'));
     }
 
     public function save(ComprasRequest $request)
@@ -32,12 +34,12 @@ class ComprasController extends Controller
         $compras->usuarios_id = $request->input('usuarios_id');
         $compras->save();
 
-        return redirect()->route('gestion_com')->with('success', 'Compra actualizado correctamente');;
+        return redirect()->route('gestion_com')->with('success', 'Compra actualizado correctamente');
     }
 
     public function editar($id)
     {
-        $compras = Usuarios::findOrFail($id);
+        $compras = Compras::findOrFail($id);
         return view('backend.usuarios.edit_com_mysqli', compact('compras'));
     }
 
@@ -46,13 +48,13 @@ class ComprasController extends Controller
         $compras = Compras::findOrFail($id);
         $datos = $request->all();
         $compras->update($datos);
-        return redirect()->route('gestion_com')->with('success', 'Compra actualizado correctamente');;
+        return redirect()->route('gestion_com')->with('success', 'Compra actualizado correctamente');
     }
 
     public function delete($id)
     {
         $compras = Compras::findOrFail($id);
         $compras->delete();
-        return redirect()->route('gestion_com')->with('success', 'Compra eliminado correctamente');;
+        return redirect()->route('gestion_com')->with('success', 'Compra eliminado correctamente');
     }
 }

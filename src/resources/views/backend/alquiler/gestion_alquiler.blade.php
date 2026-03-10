@@ -35,8 +35,8 @@
                     @foreach ($alquiler as $alq)
                         <tr>
                             <td>{{ $alq->id }}</td>
-                            <td>{{ $alq->id_astro }}</td>
-                            <td>{{ $alq->id_usuario }}</td>
+                            <td>{{ $alq->astros_id }} - {{ $astros->find($alq->astros_id)->nombre }}</td>
+                            <td>{{ $alq->usuarios_id }} - {{ $usuarios->find($alq->usuarios_id)->nombre }}</td>
                             <td>{{ $alq->fechaInicio }}</td>
                             <td>{{ $alq->fechaFin }}</td>
                             <td>
