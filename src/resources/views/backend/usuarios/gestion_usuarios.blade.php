@@ -16,15 +16,15 @@
         <div class="card-header bg-primary text-white">📋 Lista de Usuarios</div>
         <div class="card-body">
 
-            <div class="row mb-3 me-2 float-end">
-                <a href="{{ route('ins_usr') }}" class="btn btn-success">➕ Nuevo Usuario</a>
-            </div>
-
             @if (session('success'))
                 <div class="alert alert-success">
                     <p>{{session('success')}}</p>
                 </div>
             @endif
+
+            <div class="row mb-3 me-2 float-end">
+                <a href="{{ route('ins_usr') }}" class="btn btn-success">➕ Nuevo Usuario</a>
+            </div>
 
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">

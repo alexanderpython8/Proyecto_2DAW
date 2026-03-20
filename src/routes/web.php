@@ -45,10 +45,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     // Backed enlaces Usuarios #########################################################################################
 
-    Route::get('/edit_usuario', function () {
-        return view('backend.usuarios.edit_usr_mysqli');
-    })->name('edit_usr');
-
     Route::get('/gestion_usuario', function () {
         return view('backend.usuarios.gestion_usuarios');
     })->name('gestion_usr');
@@ -82,18 +78,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/alquileres/delete/{astros_usuarios}', [AstrosUsuariosController::class, 'delete'])->name('drop_alq');
 
     // Backed enlaces Astros #########################################################################################
-
-    Route::get('/edit_astro', function () {
-        return view('backend.astros.edit_ast_mysqli');
-    })->name('edit_ast');
-
-    Route::get('/gestion_astro', function () {
-        return view('backend.astros.gestion_astros');
-    })->name('gestion_ast');
-
-    Route::get('/ins_astro', function () {
-        return view('backend.astros.ins_ast_mysqli');
-    })->name('ins_ast');
 
     Route::get('/gestion_astro', [AstrosController::class, 'All'])->name('gestion_ast');
     Route::get('/ins_astro', [AstrosController::class, 'crear'])->name('ins_ast');

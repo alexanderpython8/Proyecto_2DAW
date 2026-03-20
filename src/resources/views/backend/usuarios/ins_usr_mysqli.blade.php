@@ -57,8 +57,8 @@
                             <label for="rol" class="form-label">Rol:</label>
                             <select id="rol" name="rol" class="form-control @error('rol') is-invalid @enderror" required>
                                 <option value="">Seleccionar rol</option>
-                                <option value="0" {{ old('rol') == 0 ? 'selected' : '' }}>Admin</option>
-                                <option value="1" {{ old('rol') == 1 ? 'selected' : '' }}>Usuario</option>
+                                <option value="0" {{ old('rol') == 1 ? 'selected' : '' }}>Admin</option>
+                                <option value="1" {{ old('rol') == 0 ? 'selected' : '' }}>Usuario</option>
                             </select>
                             @error('rol')
                                 <div class="invalid-feedback d-block">

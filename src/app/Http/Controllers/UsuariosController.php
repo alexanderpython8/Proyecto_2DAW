@@ -42,9 +42,9 @@ class UsuariosController extends Controller
     public function update(UsuariosRequest $request, $id)
     {
         $usuarios = Usuarios::findOrFail($id);
-        $datos = $request->all();
+        $datos = $request->only(['nombre', 'email', 'rol']);
         $usuarios->update($datos);
-        return redirect()->route('gestion_usr')->with('success', 'Usuario actualizado correctamente');;
+        return redirect()->route('gestion_usr')->with('success', 'Usuario actualizado correctamente');
     }
 
     public function delete($id)

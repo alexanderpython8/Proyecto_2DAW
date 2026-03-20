@@ -46,7 +46,7 @@
                 <li>
                     <a href="#">
                         <div>
-                            <img src="{{ asset('storage/astros/' . $astro->img) }}" alt="{{ $astro->nombre }}">
+                            <img src="{{ asset('storage/' . $astro->img) }}" alt="{{ $astro->nombre }}">
                         </div>
                         <div>
                             <h3>{{ $astro->nombre }}</h3>

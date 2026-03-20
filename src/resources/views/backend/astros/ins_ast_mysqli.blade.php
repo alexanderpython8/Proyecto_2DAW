@@ -34,8 +34,8 @@
                             <select name="tipo" id="tipo" class="form-select @error('tipo') is-invalid @enderror" required>
                                 <option value="" selected disabled>Selecciona una opción</option>
                                 <option value="0" {{ old('tipo') == 0 ? 'selected' : '' }}>Planeta</option>
-                                <option value="1" {{ old('tipo') == 1 ? 'selected' : '' }}>Sistemas estelares</option>
-                                <option value="2" {{ old('tipo') == 2 ? 'selected' : '' }}>Agujeros negros</option>
+                                <option value="1" {{ old('tipo') == 1 ? 'selected' : '' }}>Sol</option>
+                                <option value="2" {{ old('tipo') == 2 ? 'selected' : '' }}>Galaxia</option>
                             </select>
                             @error('tipo')
                                 <div class="invalid-feedback d-block">

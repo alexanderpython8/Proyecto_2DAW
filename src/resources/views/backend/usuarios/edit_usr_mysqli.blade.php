@@ -23,18 +23,18 @@
                     <div class="row">
                         <div class="col-md-6 mt-3">
                             <label for="nombre" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" >
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{$usuarios->nombre}}" >
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" >
+                            <input type="email" class="form-control" id="email" name="email" value="{{$usuarios->email}}" >
                         </div>
                         <div class="col-md-6 mt-3">
                             <label for="rol" class="form-label">Rol:</label>
                             <select name="rol" id="rol" class="form-select">
                                 <option value="default" selected disabled>Selecciona una opción</option>
-                                <option value=1 >Administrador</option>
-                                <option value=0 >Usuario</option>
+                                <option value=1 @selected($usuarios->rol == 1)>Administrador</option>
+                                <option value=0 @selected($usuarios->rol == 0)>Usuario</option>
                             </select>
                         </div>
                         <!-- Confirmo la actualización de usuario -->

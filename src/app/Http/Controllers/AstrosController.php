@@ -47,7 +47,13 @@ class AstrosController extends Controller
     public function update(AstrosRequest $request, $id)
     {
         $astros = Astros::findOrFail($id);
-        $datos = $request->all();
+        $datos = $request->except('img');
+
+        if ($request->hasFile('img')) {
+            $ruta = $request->file('img')->store('astros', 'public');
+            $datos['img'] = $ruta;
+        }
+
         $astros->update($datos);
         return redirect()->route('gestion_ast')->with('success', 'Astro actualizado correctamente');
     }

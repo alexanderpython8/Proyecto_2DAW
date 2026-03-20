@@ -20,7 +20,7 @@
 
             <!-- Botón para cerrar sesión y volver al index -->
             <div class="mt-2">
-                <a href="{{ route('welcome') }}" class="btn btn-danger">Cerrar sesión</a>
+                <a href="{{ route('welcome') }}" class="btn btn-danger">Frontend</a>
             </div>
         </div>
 
