@@ -23,7 +23,15 @@
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="{{ route('login') }}">Iniciar sesión</a>
+                    @auth
+                        <a style="font-size: 25px" href="{{ route('carrito.ver') }}">🛒</a>
+                        <form action="{{ route('logout') }}" method="POST" style="display:inline">
+                            @csrf
+                            <button type="submit">Cerrar sesion</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}">Iniciar sesion</a>
+                    @endauth
                 </li>
                 <li>
                     <button><img src="{{ asset('assets/img/buscador.png') }}" alt="Buscador"></button>
@@ -35,128 +43,75 @@
     <main>
         <article>
             <ul>
-                <li>
-                    <a href="#">
+                @foreach($astros as $astro)
+                    @if($astro->estado == 0)
+                    <li onclick="mostrarAstro(
+                        '{{ $astro->nombre }}',
+                        '{{ addslashes($astro->caracteristicas) }}',
+                        '{{ asset('storage/' . $astro->img) }}',
+                        {{ $astro->id }},
+                        '{{ number_format($astro->precio, 2) }}'
+                    )" style="cursor:pointer">
                         <div>
-                            <img src="{{ asset('assets/img/jupiter.jpg') }}" alt="">
+                            <img src="{{ asset('storage/' . $astro->img) }}" alt="{{ $astro->nombre }}">
                         </div>
                         <div>
-                            <h3>Júpiter</h3>
-                            <p>Protector terrestre</p>
+                            <h3>{{ $astro->nombre }}</h3>
+                            <p>{{ $astro->caracteristicas }}</p>
+                            <strong>{{ number_format($astro->precio, 2) }} €</strong>
                         </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/Gemini_Generated_Image_bwq4xobwq4xobwq4.png') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Alfa Centauri A</h3>
-                            <p>Sistema estelar</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/urano.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Urano</h3>
-                            <p>Atmósfera gélida</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/planetas.jpeg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Plutón</h3>
-                            <p>Enano terrestre</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/mercurio.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Mercurio</h3>
-                            <p>Sin atmósfera</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/agujeronegro.webp') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Cygnus X-1</h3>
-                            <p>Densidad infinita</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/neptuno.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Neptuno</h3>
-                            <p>Gigante helado</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/saturno.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Saturno</h3>
-                            <p>Anillos visibles</p>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div>
-                            <img src="{{ asset('assets/img/proximacentaurib.jpg') }}" alt="">
-                        </div>
-                        <div>
-                            <h3>Próxima Centauri B</h3>
-                            <p>Posiblemente rocoso</p>
-                        </div>
-                    </a>
-                </li>
+                    </li>
+                    @endif
+                @endforeach
             </ul>
         </article>
+
         <article>
             <section>
                 <ul>
-                    <h1>Júpiter</h1>
-                    <p>Es el gigante de gas que domina el sistema solar. Tan grande que en su interior cabrían 1.300
-                        Tierras, destaca por sus coloridas bandas de nubes y su legendaria tormenta, la Gran Mancha Roja.
-                    </p>
+                    <h1 id="detalle-nombre">Selecciona un astro</h1>
+                    <p id="detalle-descripcion">Haz clic en cualquier astro de la lista para ver su información aquí.</p>
+                    <p id="detalle-precio" style="font-size:1.3rem; font-weight:bold;"></p>
 
-                    <button>EXPLORAR</button>
+                    <button id="btn-explorar" style="display:none">EXPLORAR</button>
 
-                    <li><a href="#">Estado del producto →</a></li>
-                    <li><a href="#">Comprar producto →</a></li>
-                    <li><a href="#">Más acerca del producto →</a></li>
-                    <li><a href="#">Complementos del producto →</a></li>
+                    @auth
+                    <form id="form-carrito" action="" method="POST" style="display:none; margin-top:15px">
+                        @csrf
+                        <button type="submit">🛒 Añadir al carrito</button>
+                    </form>
+                    @else
+                    <a id="link-login" href="{{ route('login') }}" style="display:none">Inicia sesión para comprar</a>
+                    @endauth
                 </ul>
             </section>
             <section>
-                <img src="{{ asset('assets/img/jupiter_principal.webp') }}" alt="">
+                <img id="detalle-img" src="{{ asset('assets/img/jupiter_principal.webp') }}" alt="">
             </section>
         </article>
     </main>
+
+    <script>
+    function mostrarAstro(nombre, caracteristicas, historia, img, id, precio) {
+        document.getElementById('detalle-nombre').textContent = nombre;
+        document.getElementById('detalle-descripcion').textContent = caracteristicas;
+        document.getElementById('detalle-precio').textContent = precio + ' €';
+        document.getElementById('detalle-img').src = img;
+        document.getElementById('detalle-img').alt = nombre;
+        document.getElementById('btn-explorar').style.display = 'inline-block';
+
+        const form = document.getElementById('form-carrito');
+        if (form) {
+            form.action = '/carrito/agregar/' + id;
+            form.style.display = 'block';
+        }
+
+        const linkLogin = document.getElementById('link-login');
+        if (linkLogin) {
+            linkLogin.style.display = 'inline-block';
+        }
+    }
+    </script>
     <footer>
         <article>
             <section>
@@ -175,7 +130,6 @@
                 </ul>
                 <ul>
                     <h2>Acerca de nosotros</h2>
-                    <li></li>
                     <li><p><a href="#">Calle imaginaria</a></p></li>
                     <li><p><a href="#">Información</a></p></li>
                 </ul>

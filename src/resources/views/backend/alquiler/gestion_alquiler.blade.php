@@ -4,7 +4,7 @@
 @section('fondo')
     <style>
         body {
-            background-image: url("../img/4k-earth-overcast-planet-5go4pukq2go4shxz.jpg");
+            background-image: url("{{ asset('assets/img/mountains-over-two-planets-x4d5uxsdmvxcq1ag.jpg') }}");
         }
     </style>
 @endsection
@@ -16,26 +16,15 @@
         <div class="card-header bg-primary text-white">📋 Lista de Alquileres</div>
         <div class="card-body">
 
-            <!-- Alertas de error  -->
-            <?php
-                // if (isset($_GET["cli"])) {
-                //     if ($_GET["cli"] == 0) {
-                //         echo '<div class="alert alert-success">✅ Cliente insertado correctamente.</div>';
-                //     }
-                //     if ($_GET["cli"] == 1) {
-                //         echo '<div class="alert alert-warning">⚠️ El email ya existe en la base de datos.</div>';
-                //     }
-                //     if ($_GET["cli"] == 2) {
-                //         echo '<div class="alert alert-danger">❌ Ha ocurrido un error al intentar insertar el usuario.</div>';
-                //     }
-                // }
-            ?>
-
-            @if ($rol == 1)
-                <div class="row mb-3 me-2 float-end">
-                    <a href="{{ route('ins_alq') }}" class="btn btn-success">➕ Nuevo Alquiler</a>
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <p>{{session('success')}}</p>
                 </div>
             @endif
+
+            <div class="row mb-3 me-2 float-end">
+                <a href="{{ route('ins_alq') }}" class="btn btn-success">➕ Nuevo Alquiler</a>
+            </div>
 
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">
@@ -45,34 +34,25 @@
                         <th>Usuario</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>
-                        @if ($rol == 1)
-                            <th>Acciones</th>
-                        @endif
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($alquiler as $alq)
                         <tr>
                             <td>{{ $alq->id }}</td>
-                            <td>{{ $alq->id_astro }}</td>
-                            <td>{{ $alq->id_usuario }}</td>
-                            <td>{{ $alq->fechaInicio }}</td>
-                            <td>{{ $alq->fechaFin }}</td>
+                            <td>{{ $alq->astros_id }} - {{ $astros->find($alq->astros_id)->nombre }}</td>
+                            <td>{{ $alq->usuarios_id }} - {{ $usuarios->find($alq->usuarios_id)->nombre }}</td>
+                            <td>{{ \Carbon\Carbon::parse($alq->fechaInicio)->toDateString() }}</td>
+                            <td>{{ \Carbon\Carbon::parse($alq->fechaFin)->toDateString() }}</td>
                             <td>
-                                @if ($rol == 1)
-                                    <a href="{{ route('edit_ast', $alq->id) }}"
-                                    class="btn btn-sm btn-warning">✏️</a>
-
-                                    <form action="{{ route('drop_ast', $alq->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-danger">
-                                            🗑️
-                                        </button>
-                                    </form>
-                                @else
-                                    <span class="text-muted">—</span>
-                                @endif
+                                <form action="{{ route('drop_alq', $alq->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
+                                        🗑️
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

@@ -4,9 +4,10 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\odel=Usuarios>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Usuarios>
  */
 class UsuariosFactory extends Factory
 {
@@ -20,7 +21,7 @@ class UsuariosFactory extends Factory
         return [
             'nombre' => $this->faker->name(),
             'email' => $this->faker->email(),
-            'password' => $this->faker->word(),
+            'password' => $this->faker->text(8),
             'rol' => $this->faker->numberBetween(0, 1)
         ];
     }

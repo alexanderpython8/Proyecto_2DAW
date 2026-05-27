@@ -15,56 +15,57 @@
                 <h2 class="text-light">Registro de Compra</h2>
             </div>
             <div class="card-body">
-                <form method="POST">
+                <form action="{{ route('save_com') }}" method="POST">
                     <div class="row">
+                        @csrf
+
                         <div class="col-md-6 mt-3">
-                            <label for="id_cliente" class="form-label">Cliente (id - nombre)</label>
-                            <select name="id_cliente" id="id_cliente" class="form-select" required>
+                            <label for="usuarios_id" class="form-label">Clientes (id - nombre)</label>
+                            <select name="usuarios_id" id="usuarios_id" 
+                                class="form-select @error('usuarios_id') is-invalid @enderror" required>
                                 <option value="" selected disabled>Selecciona un cliente</option>
-                                <!-- Confirmo que el array no esta vacio -->
-                                <?php if (!empty($clientes)): ?>
-                                    <!-- Muestro todos los clientes disponibles con el id y el nombre -->
-                                    <?php foreach ($clientes as $c): ?>
-                                        <option value="<?php echo intval($c['id']); ?>">
-                                            <!-- Imprimo el array en la seleccion -->
-                                            <?php echo htmlspecialchars($c['id'] . ' - ' . $c['nombre'], ENT_QUOTES); ?>
+                                @if (!empty($usuarios))
+                                    @foreach ($usuarios as $usr)
+                                        <option value="{{ intval($usr['id']) }}"
+                                            {{ old('usuarios_id') == $usr['id'] ? 'selected' : '' }}>
+                                            {{ $usr['id'] . ' - ' . $usr['nombre'] }}
                                         </option>
-                                    <?php endforeach; ?>
-                                <!-- Si no hay ningun cliente -->
-                                <?php else: ?>
+                                    @endforeach
+                                @else
                                     <option value="" disabled>No hay clientes disponibles</option>
-                                <?php endif; ?>
+                                @endif
                             </select>
+                            @error('usuarios_id')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
+
                         <div class="col-md-6 mt-3">
-                            <label for="id_planeta" class="form-label">Planeta (id - nombre)</label>
-                            <select name="id_planeta" id="id_planeta" class="form-select" required>
-                                <option value="" selected disabled>Selecciona un planeta</option>
-                                <!-- Confirmo que el array no esta vacio -->
-                                <?php if (!empty($planetas)): ?>
-                                    <!-- Muestro todos los clientes disponibles con el id y el nombre -->
-                                    <?php foreach ($planetas as $p): ?>
-                                        <option value="<?php echo intval($p['id']); ?>">
-                                            <!-- Imprimo el array en la seleccion -->
-                                            <?php echo htmlspecialchars($p['id'] . ' - ' . $p['nombre'], ENT_QUOTES); ?>
+                            <label for="astros_id" class="form-label">Astros (id - nombre)</label>
+                            <select name="astros_id" id="astros_id" 
+                                class="form-select @error('astros_id') is-invalid @enderror" required>
+                                <option value="" selected disabled>Selecciona un astro</option>
+                                @if (!empty($astros))
+                                    @foreach ($astros as $ast)
+                                        <option value="{{ intval($ast['id']) }}"
+                                            {{ old('astros_id') == $ast['id'] ? 'selected' : '' }}>
+                                            {{ $ast['id'] . ' - ' . $ast['nombre'] }}
                                         </option>
-                                    <?php endforeach; ?>
-                                <!-- Si no hay ningun planeta -->
-                                <?php else: ?>
-                                    <option value="" disabled>No hay planetas disponibles</option>
-                                <?php endif; ?>
+                                    @endforeach
+                                @else
+                                    <option value="" disabled>No hay astros disponibles</option>
+                                @endif
                             </select>
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="total" class="form-label">Precio</label>
-                            <input type="number" class="form-control" id="total" name="total" step="1" required>
-                        </div>
-                        <div class="col-md-6 mt-3">
-                            <label for="descuento" class="form-label">Descuento</label>
-                            <input type="number" class="form-control" id="descuento" name="descuento" step="1" required>
+                            @error('astros_id')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <!-- Confirmo para agregar el nuevo pedido -->
-                        <button type="submit" class="btn btn-success mt-5">Guardar pedido</button>
+                        <button type="submit" class="btn btn-success mt-5">Guardar compra</button>
                     </div>
                 </form>
             </div>

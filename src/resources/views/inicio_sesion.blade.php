@@ -9,16 +9,19 @@
 <body>
     <main>
         <h1><a href="{{ route('welcome') }}">BIG BANG</a></h1>
-        <form action="" method="POST">
-            @csrf
-            <h2>INICIAR SESIÓN</h2>
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="password" id="password" name="password" placeholder="Contraseña" required>
-            <button type="submit" id="submit" name="submit">Acceder</button>
-            <a href="#">¿Problemas al iniciar sesión?</a>
-            <p>¿No tienes una cuenta? <a href="#">Crear cuenta</a></p>
-            <a href="{{ route('panel_control') }}">Panel de gestion</a>
-        </form>
+        <div>
+            <form action="{{ route('login.post') }}" method="POST"
+                style="display:flex; flex-direction:column; align-items:center; width:100%;">
+                @csrf
+                <h2>INICIAR SESIÓN</h2>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <button type="submit" id="submit" name="submit">Acceder</button>
+                <a href="#">¿Problemas al iniciar sesión?</a>
+                <p>¿No tienes una cuenta? <a href="#">Crear cuenta</a></p>
+                <a href="{{ route('panel_control') }}">Panel de gestion</a>
+            </form>
+        </div>
     </main>
     <footer>
         <article>

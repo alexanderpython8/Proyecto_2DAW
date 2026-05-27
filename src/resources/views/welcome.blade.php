@@ -23,7 +23,15 @@
                         </ul>
                     </div>
                     <a href="#">Acerca de nosotros</a>
-                    <a href="{{ route('login') }}">Iniciar sesión</a>
+                    @auth
+                        <a style="font-size: 25px" href="{{ route('carrito.ver') }}">🛒</a>
+                        <form action="{{ route('logout') }}" method="POST" style="display:inline">
+                            @csrf
+                            <button type="submit">Cerrar sesion</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}">Iniciar sesion</a>
+                    @endauth
                 </li>
                 <li>
                     <button><img src="{{ asset('assets/img/buscador.png') }}" alt="Buscador"></button>
@@ -107,7 +115,6 @@
                 </ul>
                 <ul>
                     <h2>Acerca de nosotros</h2>
-                    <li></li>
                     <li><p><a href="#">Calle imaginaria</a></p></li>
                     <li><p><a href="#">Información</a></p></li>
                 </ul>

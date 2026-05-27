@@ -5,60 +5,65 @@
 @section('fondo')
     <style>
         body {
-            background-image: url("../img/solar-system-minimalism-q1.jpg");
+            background-image: url("{{ asset('assets/img/mountains-over-two-planets-x4d5uxsdmvxcq1ag.jpg') }}");
         }
     </style>
 @endsection
 
 @section('principal')
-    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Sistemas</h2>
+    <h2 class="text-center mb-4" style="padding-right: 400px;">📋 Gestión de Pago</h2>
 
     <div class="card shadow" style="max-width: 1500px; width: 100%;">
-        <div class="card-header bg-primary text-white">📋 Lista de Sistemas</div>
+        <div class="card-header bg-primary text-white">📋 Lista de Pago</div>
         <div class="card-body">
-
-            <!-- Iserción de nuevos valores solo par administradores -->
-            <div class="row mb-3 me-2 float-end">
-                <a href="{{ route('ins_pag') }}" class="btn btn-success">➕ Nuevo Pago</a>
-            </div>
 
             <table class="table table-striped table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Alquiler</th>
-                        <th>Compra</th>
+                        <th>Tipo</th>
+                        <th>Astro</th>
+                        <th>Usuario</th>
                         <th>Monto</th>
                         <th>Fecha Pago</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
+                
                 <tbody>
-                    @foreach ($pago as $p)
-                        <tr>
-                            <td>{{ $p->id }}</td>
-                            <td>{{ $p->id_alquiler }}</td>
-                            <td>{{ $p->id_compra }}</td>
-                            <td>{{ $p->monto }}€</td>
-                            <td>{{ $p->fechaPago }}</td>
-                            <td>
-                                <!-- Solo disponble la edicion y eliminacion para administradores -->
-                                <a href="{{ route('edit_pag', $p->id) }}"
-                                class="btn btn-sm btn-warning">✏️</a>
+                    @foreach ($pagos as $p)
+                            <tr>
+                                <td>{{ $p->id }}</td>
 
-                                <form action="{{ route('drop_pag', $p->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="btn btn-danger">
-                                        🗑️
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
+                                <td>
+                                    @php $tipo = $p->tipo ?? ($p->compras_id ? 'compra' : 'alquiler') @endphp
+                                    @if($tipo === 'compra')
+                                        <span class="badge-compra">Compra</span>
+                                    @else
+                                        <span class="badge-alquiler">Alquiler</span>
+                                    @endif
+                                </td>
+
+                                <td>
+                                    @if($p->compras_id)
+                                        {{ $astros->find($compras->find($p->compras_id)->astros_id)->nombre ?? '—' }}
+                                    @else
+                                        {{ $astros->find($alquileres->find($p->astros_usuarios_id)->astros_id)->nombre ?? '—' }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($p->compras_id)
+                                        {{ $usuarios->find($compras->find($p->compras_id)->usuarios_id)->nombre ?? '—' }}
+                                    @else
+                                        {{ $usuarios->find($alquileres->find($p->astros_usuarios_id)->usuarios_id)->nombre ?? '—' }}
+                                    @endif
+                                </td>
+
+                                <td>{{ number_format($p->monto, 2) }}</td>
+                                <td>{{ \Carbon\Carbon::parse($p->fechaPago)->toDateString() }}</td>
+                            </tr>
+                        @endforeach
                 </tbody>
             </table>
-            <!-- Metodo de paginacion de maximo en 10 -->
         </div>
     </div>
 @endsection

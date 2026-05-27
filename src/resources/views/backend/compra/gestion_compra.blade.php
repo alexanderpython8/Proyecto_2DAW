@@ -4,7 +4,7 @@
 @section('fondo')
     <style>
         body {
-            background-image: url("../img/minimalist-space-3840-x-2183-wallpaper-c27lewilmfd7166e.jpg");
+            background-image: url("{{ asset('assets/img/mountains-over-two-planets-x4d5uxsdmvxcq1ag.jpg') }}");
         }
     </style>
 @endsection
@@ -15,6 +15,12 @@
     <div class="card shadow" style="max-width: 1500px; width: 100%;">
         <div class="card-header bg-primary text-white">📋 Lista de Compras</div>
         <div class="card-body">
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <p>{{session('success')}}</p>
+                </div>
+            @endif
 
             <!-- Iserción de nuevos valores solo par administradores -->
             <div class="row mb-3 me-2 float-end">
@@ -32,20 +38,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($compra as $com)
+                    @foreach ($compras as $com)
                         <tr>
                         <td>{{ $com->id }}</td>
-                        <td>{{ $com->id_astro }}</td>
-                        <td>{{ $com->id_usuario }}</td>
-                        <td>{{ $com->fechaClompra }}</td>
+                        <td>{{ $com->astros_id }} - {{ $astros->find($com->astros_id)->nombre }}</td>
+                        <td>{{ $com->usuarios_id }} - {{ $usuarios->find($com->usuarios_id)->nombre }}</td>
+                        <td>{{ \Carbon\Carbon::parse($com->fechaCompra)->toDateString() }}</td>
                         <td>
-                            <a href="{{ route('edit_com', $com->id) }}"
-                            class="btn btn-sm btn-warning">✏️</a>
-
                             <form action="{{ route('drop_com', $com->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger">
+                                <button type="submit" class="btn btn-danger">
                                     🗑️
                                 </button>
                             </form>

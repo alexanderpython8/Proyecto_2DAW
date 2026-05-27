@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('astros', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100);
+            $table->string('nombre', 100)->unique();
             $table->tinyInteger('tipo');
             $table->tinyInteger('estado')->default(0);
             $table->string('historia', 200);
             $table->string('caracteristicas', 200);
             $table->Integer('explotacion')->default(100);
             $table->Integer('precio');
-            $table->string('img', 255)->default("default.png");
+            $table->string('img', 255)->default("04Yzc39Ls3CjenAJyoppD8N1HZn9qi1wjOupMG27.jpg");
             $table->timestamps();
         });
     }

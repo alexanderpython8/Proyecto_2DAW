@@ -4,7 +4,7 @@
 @section('fondo')
     <style>
         body {
-            background-image: url("..assets/img/asteroids-of-solar-system-hd-lf9eaj5sxtwrjw7i.jpg");
+            background-image: url("{{ asset('assets/img/mountains-over-two-planets-x4d5uxsdmvxcq1ag.jpg') }}");
         }
     </style>
 @endsection
@@ -15,6 +15,12 @@
     <div class="card shadow" style="max-width: 1500px; width: 100%;">
         <div class="card-header bg-primary text-white">📋 Lista de Usuarios</div>
         <div class="card-body">
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <p>{{session('success')}}</p>
+                </div>
+            @endif
 
             <div class="row mb-3 me-2 float-end">
                 <a href="{{ route('ins_usr') }}" class="btn btn-success">➕ Nuevo Usuario</a>
@@ -35,7 +41,15 @@
                         <td>{{ $usr->id }}</td>
                         <td>{{ $usr->nombre }}</td>
                         <td>{{ $usr->email }}</td>
-                        <td>{{ $usr->rol }}</td>
+                        <td>
+                            @if ($usr->rol == 0)
+                                Usuario
+                            @elseif ($usr->rol == 1)
+                                Administrador
+                            @else
+                                Suspendida
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('edit_usr', $usr->id) }}"
                             class="btn btn-sm btn-warning">✏️</a>
@@ -43,8 +57,8 @@
                             <form action="{{ route('drop_usr', $usr->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger">
-                                    🗑️
+                                <button type="submit" class="btn btn-danger">
+                                    ⛔
                                 </button>
                             </form>
                         </td>
@@ -52,7 +66,6 @@
                     @endforeach
                 </tbody>
             </table>
-            <!-- Metodo de paginacion de maximo en 10 -->
         </div>
     </div>
 @endsection

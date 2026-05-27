@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UsuariosRequest;
 use App\Models\Usuarios;
-use Illuminate\Http\View;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -19,16 +21,16 @@ class UsuariosController extends Controller
         return view('backend.usuarios.ins_usr_mysqli');
     }
 
-    public function save(Request $request)
+    public function save(UsuariosRequest $request)
     {
         $usuarios = new Usuarios();
         $usuarios->nombre = $request->input('nombre');
         $usuarios->email = $request->input('email');
-        $usuarios->password = $request->input('password');
+        $usuarios->password = Hash::make($request->input('password'));
         $usuarios->rol = $request->input('rol');
         $usuarios->save();
 
-        return redirect()->route('backend.usuarios.gestion_usuario');
+        return redirect()->route('gestion_usr')->with('success', 'Usuario actualizado correctamente');;
     }
 
     public function editar($id)
@@ -37,18 +39,18 @@ class UsuariosController extends Controller
         return view('backend.usuarios.edit_usr_mysqli', compact('usuarios'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UsuariosRequest $request, $id)
     {
         $usuarios = Usuarios::findOrFail($id);
-        $datos = $request->all();
+        $datos = $request->only(['nombre', 'email', 'rol']);
         $usuarios->update($datos);
-        return redirect()->route('backend.usuarios.gestion_usuario');
+        return redirect()->route('gestion_usr')->with('success', 'Usuario actualizado correctamente');
     }
 
     public function delete($id)
     {
         $usuarios = Usuarios::findOrFail($id);
-        $usuarios->delete();
-        return redirect()->route('backend.usuarios.gestion_usuario');
+        $usuarios->update(['rol' => 3]);
+        return redirect()->route('gestion_usr')->with('success', 'Usuario suspendido correctamente');;
     }
 }

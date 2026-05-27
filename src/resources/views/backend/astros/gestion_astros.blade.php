@@ -4,7 +4,7 @@
 @section('fondo')
     <style>
         body {
-            background-image: url("../img/4k-earth-surreal-look-v85atk12miu0j8u8.jpg");
+            background-image: url("{{ asset('assets/img/mountains-over-two-planets-x4d5uxsdmvxcq1ag.jpg') }}");
         }
     </style>
 @endsection
@@ -14,8 +14,14 @@
 
     <div class="card shadow" style="max-width: 1500px; width: 100%;">
         <div class="card-header bg-primary text-white">📋 Lista de Astros</div>
+        <div class="card-body">
 
-            <!-- Iserción de nuevos valores solo par administradores -->
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <p>{{session('success')}}</p>
+                </div>
+            @endif
+
             <div class="row mb-3 me-2 float-end">
                 <a href="{{ route('ins_ast') }}" class="btn btn-success">➕ Nuevo Astro</a>
             </div>
@@ -51,8 +57,10 @@
                                     Libre
                                 @elseif ($ast->estado == 1)
                                     Comprado
-                                @else
+                                @elseif ($ast->estado == 2)
                                     Alquilado
+                                @else
+                                    Descatalogado
                                 @endif
                             </td>
                             <td>{{ $ast->explotacion }}%</td>
@@ -64,8 +72,8 @@
                                 <form action="{{ route('drop_ast', $ast->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-danger">
-                                        🗑️
+                                    <button type="submit" class="btn btn-danger">
+                                        ⛔
                                     </button>
                                 </form>
                             </td>

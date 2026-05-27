@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Astros;
 use Illuminate\View\View;
+use App\Http\Requests\AstrosRequest;
 
 class AstrosController extends Controller
 {
@@ -19,7 +20,7 @@ class AstrosController extends Controller
         return view('backend.astros.ins_ast_mysqli');
     }
 
-    public function save(Request $request)
+    public function save(AstrosRequest $request)
     {
         $astros = new Astros();
         $astros->nombre = $request->input('nombre');
@@ -27,13 +28,14 @@ class AstrosController extends Controller
         $astros->historia = $request->input('historia');
         $astros->caracteristicas = $request->input('caracteristicas');
         $astros->precio = $request->input('precio');
+
         if ($request->hasFile('img')) {
             $ruta = $request->file('img')->store('astros', 'public');
             $astros->img = $ruta;
         }
         $astros->save();
 
-        return redirect()->route('backend.astros.gestion_astros');
+        return redirect()->route('gestion_ast')->with('success', 'Astro creado correctamente');
     }
 
     public function editar($id)
@@ -42,18 +44,24 @@ class AstrosController extends Controller
         return view('backend.astros.edit_ast_mysqli', compact('astros'));
     }
 
-    public function update(Request $request, $id)
+    public function update(AstrosRequest $request, $id)
     {
         $astros = Astros::findOrFail($id);
-        $datos = $request->all();
+        $datos = $request->except('img');
+
+        if ($request->hasFile('img')) {
+            $ruta = $request->file('img')->store('astros', 'public');
+            $datos['img'] = $ruta;
+        }
+
         $astros->update($datos);
-        return redirect()->route('backend.astros.gestion_astros');
+        return redirect()->route('gestion_ast')->with('success', 'Astro actualizado correctamente');
     }
 
     public function delete($id)
     {
         $astros = Astros::findOrFail($id);
-        $astros->delete();
-        return redirect()->route('backend.astros.gestion_astros');
+        $astros->update(['estado' => 4]);
+        return redirect()->route('gestion_ast')->with('success', 'Astro descatalogado correctamente');
     }
 }
