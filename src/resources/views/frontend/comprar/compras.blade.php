@@ -52,14 +52,15 @@
                         {{ $astro->id }},
                         '{{ number_format($astro->precio, 2) }}'
                     )" style="cursor:pointer">
-                        <div>
-                            <img src="{{ asset('storage/' . $astro->img) }}" alt="{{ $astro->nombre }}">
-                        </div>
-                        <div>
-                            <h3>{{ $astro->nombre }}</h3>
-                            <p>{{ $astro->caracteristicas }}</p>
-                            <strong>{{ number_format($astro->precio, 2) }} €</strong>
-                        </div>
+                        <a href="#">
+                            <div>
+                                <img src="{{ asset('storage/' . $astro->img) }}" alt="{{ $astro->nombre }}">
+                            </div>
+                            <div>
+                                <h3>{{ $astro->nombre }}</h3>
+                                <strong>{{ number_format($astro->precio, 2) }} €</strong>
+                            </div>
+                        </a> 
                     </li>
                     @endif
                 @endforeach
@@ -76,23 +77,25 @@
                     <button id="btn-explorar" style="display:none">EXPLORAR</button>
 
                     @auth
-                    <form id="form-carrito" action="" method="POST" style="display:none; margin-top:15px">
-                        @csrf
-                        <button type="submit">🛒 Añadir al carrito</button>
-                    </form>
+                        <form id="form-carrito" action="" method="POST" style="display:none; margin-top:15px">
+                            @csrf
+                            <button type="submit">🛒 Añadir al carrito</button>
+                        </form>
                     @else
-                    <a id="link-login" href="{{ route('login') }}" style="display:none">Inicia sesión para comprar</a>
+                        <a id="link-login" href="{{ route('login') }}" style="display:none; margin-top:15px; display:none; padding: 12px 24px; background-color: #1A2340; color: #6FA8FF; border: 1px solid #6FA8FF; border-radius: 6px; text-decoration: none; font-size: 15px; letter-spacing: 1px;">
+                            🔑 Inicia sesión para comprar
+                        </a>
                     @endauth
                 </ul>
             </section>
             <section>
-                <img id="detalle-img" src="{{ asset('assets/img/jupiter_principal.webp') }}" alt="">
+                <img id="detalle-img" src="{{ asset('assets/img/jupiter_principal.webp') }}" alt="" style="width:520px; height:520px; object-fit:cover; border-radius:5px;">
             </section>
         </article>
     </main>
 
     <script>
-    function mostrarAstro(nombre, caracteristicas, historia, img, id, precio) {
+    function mostrarAstro(nombre, caracteristicas, img, id, precio) {
         document.getElementById('detalle-nombre').textContent = nombre;
         document.getElementById('detalle-descripcion').textContent = caracteristicas;
         document.getElementById('detalle-precio').textContent = precio + ' €';
